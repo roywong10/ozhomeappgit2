@@ -1,0 +1,106 @@
+ion-backdrop {
+	opacity: .3;
+}
+
+.on-modal-shown {
+	filter: blur(3px);
+}
+
+.ios .modal-wrapper {
+	border-radius: 2px;
+}
+
+.alert-ios {
+	.alert-wrapper {
+		border-radius: 2px;
+	}
+
+	.alert-message {
+		font-size: 1.6rem;
+		padding-bottom: 15px;
+	}
+
+	.alert-button-group {
+		border: 0 !important;
+
+		button {
+			width: 330px;
+			font-size: 1.6rem;
+			border-radius: 2px;
+			margin: 0 20px 20px;
+			background: map-get($colors, primary);
+			color: $white;
+			//border: 0 !important; -- needed border on delete alert alert.
+
+			.button-inner {
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
+
+@media (min-width: $screen-sm) {
+
+	.filters-modal {
+		//height: calc(100% - 49px);
+
+		.modal-wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-bottom: 1px solid $grey-border;
+		}
+
+		ion-backdrop {
+			display: none;
+		}
+
+		.toolbar-content-ios {
+			max-width: 351px;
+		}
+
+		ion-navbar.toolbar {
+			justify-content: flex-start;
+		}
+	}
+
+	page-property-filters {
+		.scroll-content {
+			display: flex;
+			align-content: space-between;
+		}
+	}
+
+	.tab-filters-left {
+		width: 374px;
+		border-right: 1px solid $grey-border;
+		background: $grey-bg;
+
+		page-alerts-edit & {
+			width: 100%;
+		}
+	}
+
+	.filters-list {
+		flex-grow: 1;
+		flex-direction: column;
+		display: flex;
+	}
+
+	.button-list-item {
+		align-self: center;
+		margin-top: auto;
+		flex-grow: 4;
+		border: 0 !important;
+
+		button {
+			width: 330px;
+			font-size: 1.6rem;
+			border-radius: 2px;
+			margin: 0 auto;
+		}
+	}
+}

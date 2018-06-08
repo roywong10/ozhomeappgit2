@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="162" height="143" viewBox="0 0 162 143">
+    <defs>
+        <radialGradient id="a" cx="49.08%" cy="53.719%" r="45.912%" fx="49.08%" fy="53.719%" gradientTransform="matrix(0 -1 1.04896 0 -.073 1.028)">
+            <stop offset="0%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(-1)">
+        <ellipse cx="84" cy="117.5" fill="url(#a)" opacity=".1" rx="84" ry="23.5"/>
+        <ellipse cx="83" cy="117" fill="#B7D6EA" opacity=".9" rx="7" ry="2"/>
+        <ellipse cx="82" cy="117" stroke="#B7D6EA" opacity=".9" rx="20" ry="6"/>
+        <ellipse cx="82" cy="117.5" stroke="#B7D6EA" opacity=".6" rx="36" ry="10.5"/>
+        <ellipse cx="81" cy="118" stroke="#B7D6EA" opacity=".3" rx="51" ry="15"/>
+        <ellipse cx="81.5" cy="118.5" stroke="#B7D6EA" opacity=".1" rx="79.5" ry="23.5"/>
+        <path fill="#FFF" d="M83.5 117S43 62.868 43 40.5C43 18.132 61.132 0 83.5 0S124 18.132 124 40.5 83.5 117 83.5 117zm0-54C95.926 63 106 52.926 106 40.5S95.926 18 83.5 18 61 28.074 61 40.5 71.074 63 83.5 63z"/>
+    </g>
+</svg>

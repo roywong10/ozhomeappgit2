@@ -1,0 +1,79 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'Property Enquiry' | translate}}</ion-title>
+    <ion-buttons right end>
+      <button ion-button navPop clear>
+         {{'Cancel' | translate}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="checkbox-list">
+    <ion-item>
+    <ion-label>{{'Price guide' | translate}}</ion-label>
+      <ion-checkbox item-right [(ngModel)]="enquiryDetails.priceGuide"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Contract of sale' | translate}}</ion-label>
+      <ion-checkbox item-right [(ngModel)]="enquiryDetails.contractOfSale"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Inspection times' | translate}}</ion-label>
+      <ion-checkbox item-right [(ngModel)]="enquiryDetails.inspectionTimes"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'Similar properties' | translate}}</ion-label>
+      <ion-checkbox item-right [(ngModel)]="enquiryDetails.similarProperties"></ion-checkbox>
+    </ion-item>
+    <p text-center center margin><span class="alert alert-danger" *ngIf="!hasEnquiryType() && hasSubmitted" class="alert alert-danger">{{'EnquiryTypeReqMsg' | translate}}</span></p>
+  </ion-list>
+
+  <ion-card>
+    <form class="form form-enquiry" [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <ion-item [class.invalid]="!enquiryForm.controls.name.valid && (enquiryForm.controls.name.dirty || hasSubmitted)">
+          <ion-label>{{ 'Name' | translate }} *</ion-label>
+          <ion-input type="text" formControlName="name" name="name" [placeholder]="'NamePlaceholder' | translate"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!enquiryForm.controls.name.valid && hasSubmitted" class="alert alert-danger">{{'NameReqMsg' | translate}}</ion-item>
+        <ion-item [class.invalid]="!enquiryForm.controls.email.valid && (enquiryForm.controls.email.dirty || hasSubmitted)">
+          <ion-label>{{ 'Email' | translate }} *</ion-label>
+          <ion-input type="email" formControlName="email" placeholder="john@internet.com.au"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!enquiryForm.controls.email.valid && hasSubmitted" class="alert alert-danger">{{'EmailReqMsg' | translate}}</ion-item>
+        <ion-item>
+          <ion-label>{{ 'Phone' | translate }}</ion-label>
+          <ion-input [placeholder]="'Phone' | translate" formControlName="phone"></ion-input>
+        </ion-item>
+        <ion-item [class.invalid]="!enquiryForm.controls.weChatId.valid && (enquiryForm.controls.weChatId.dirty || hasSubmitted)">
+          <ion-label>{{ 'WeChat' | translate }}</ion-label>
+          <ion-input type="text" formControlName="weChatId" [placeholder]="'WeChatPlaceholder' | translate"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'Message' | translate }}</ion-label>
+          <ion-textarea rows="4" [placeholder]="'MessagePlaceholder' | translate" formControlName="other"></ion-textarea>
+        </ion-item>
+      </fieldset>
+
+      <p text-center>
+        <span *ngIf="language === 'en'">
+          By submittng this enquiry you are agreeing<br /> to our <a (click)="viewPrivacyPolicy()">Privacy Policy</a>
+        </span>
+        <span *ngIf="language === 'zh'">
+          点击“提交”按钮表明您接受我们的<a (click)="viewPrivacyPolicy()">{{'Privacy Policy' | translate}}</a>并同意提供个人信息，以便更好地帮助您解决各类咨询。
+        </span>
+      </p>
+      <p *ngIf="errorMessage !== ''" [innerHtml]="errorMessage" class="error-message"></p>
+      <button ion-button margin-top full type="submit">
+			{{'SendEnquiryButton' | translate}}
+		</button>
+
+    </form>
+  </ion-card>
+
+</ion-content>

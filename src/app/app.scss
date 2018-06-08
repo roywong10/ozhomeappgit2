@@ -1,0 +1,167 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@import 'scss/structure';
+@import 'scss/icons';
+@import 'scss/forms';
+@import 'scss/text-toggle';
+@import 'scss/modals';
+@import 'scss/tabs';
+@import 'scss/range';
+@import 'scss/alerts-filters';
+
+.content {
+	background-color: $grey-bg;
+}
+
+.bg-white {
+	background-color: $white;
+}
+
+.text-white {
+	color: $white;
+}
+
+.card-content-ios {
+	padding: 10px;
+}
+
+.no-padding-bottom {
+	padding-bottom: 0;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0 !important;
+}
+
+.no-padding-top {
+	padding-top: 0;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.btn-link {
+	font-size: 1.5rem;
+}
+
+.bar-button-ios {
+	font-weight: bold;
+	height: 24px;
+}
+
+ion-img {
+	background: transparent;
+}
+
+ion-footer {
+
+	.button-ios {
+		font-weight: bold;
+		font-size: 1.5rem;
+		border-radius: 0;
+		line-height: 49px;
+		height: 49px;
+		flex-grow: 1;
+
+	}
+}
+
+// buttons on login and sign up screens
+.btn-login {
+	margin: 0 auto 20px;
+	border-radius: 2px;
+	position: relative;
+	max-width: 360px;
+
+	.set-ozhome {
+		position: absolute;
+		left: 32px;
+		height: 100%;
+		line-height: 42px;
+
+		&.icon-facebook {
+			left: 38px;
+		}
+
+		&.icon-email {
+			font-size: .9em;
+			left: 34px;
+		}
+	}
+}
+/*https://github.com/ionic-team/ionic/issues/11584*/
+.content-ios:not([no-bounce])>.scroll-content::before { bottom: 0; }
+
+@media (min-width: 768px) {
+	.hidden-sm {
+		display: none !important;
+	}
+}
+
+@media (max-width: 340px) {
+	.btn-login {
+
+		.set-ozhome {
+			position: absolute;
+			left: 20px;
+
+			&.icon-facebook {
+				left: 27px;
+			}
+
+			&.icon-email {
+				font-size: .9em;
+				left: 24px;
+			}
+		}
+	}
+}
+
+.spaced-label {
+	color: $warm-grey;
+	padding: 30px 10px 10px;
+	font-size: 1.6rem;
+	margin: 0;
+}
+
+.spinner  {
+	width: 35px;
+	height: 35px;
+	top: 3px;
+}
+
+.infinite-loading-spinner .spinner-crescent circle {
+	stroke: map-get($colors, primary);
+}
+
+@media (min-width: $screen-sm) {
+	.btn-login {
+		font-size: 1.8rem;
+		height: 60px;
+
+		.set-ozhome {
+			line-height: 57px;
+		}
+	}
+
+	.modal-wrapper {
+		width:700px;
+		left: calc(50% - (700px/2))
+	}
+}

@@ -1,0 +1,74 @@
+.icon-search {
+	width: 17px;
+	height: 17px;
+}
+
+.icon-map,
+.icon-list {
+	width: 11px;
+	height: 12px;
+	margin-right: 5px;
+}
+
+.icon-map {
+	margin-top: -2px;
+}
+
+.icon-sort {
+	width: 11px;
+	height: 8px;
+	margin-right: 5px;
+	margin-top: -8px;
+	display: inline-block;
+}
+
+.ion-ios-arrow-back {
+	font-size: 1.6em;
+}
+
+.icon-share {
+	font-size: 1em;
+	margin-right: 7px;
+}
+
+.icon-calendar {
+	width: 26px;
+	height: 22px;
+}
+
+.icon-currentlocation {
+	width: 22px;
+	height: 22px;
+}
+
+.icon-alertname {
+	font-style: normal;
+}
+
+.floorplan {
+	font-size: 1.2rem;
+
+	.icon-floorplan {
+		color: #999;
+		font-size: .8em;
+		margin-right: 5px;
+	}
+}
+
+page-property-filters {
+	.item-ios > .icon {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+	}
+}
+
+@media (min-width: $screen-sm) {
+	.icon-sort {
+		margin-top: -13px;
+	}
+
+	.floorplan {
+		font-size: 1.4rem;
+	}
+}

@@ -1,0 +1,34 @@
+.text-toggle {
+	position: relative;
+	padding: 4px;
+	border-radius: 2px;
+	float: right;
+	border: solid 1px rgba(map-get($colors, secondary), .2);
+
+	&::after {
+		position: absolute;
+		height: 26px;
+		line-height: 26px;
+		width: 80px;
+		background: map-get($colors, secondary);
+		left: 5px;
+		top: 5px;
+		display: block;
+	}
+
+	.segment-button {
+		border: 0;
+		height: 26px;
+		line-height: 26px;
+		width: 80px;
+		border-radius: 2px !important;
+	}
+
+	.bedroom-filter &,
+	.bathroom-filter &,
+	.car-filter & {
+		margin: 10px 0 14px;
+	}
+}
+
+

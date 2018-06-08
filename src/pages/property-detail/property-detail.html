@@ -1,0 +1,286 @@
+<ion-header>
+	<!-- Mobile nav -->
+	<ion-navbar text-center hideBackButton="false" *ngIf="!isTablet">
+		<ion-buttons left aria-expanded="">
+			<button ion-button navPop>
+				<ion-icon name="arrow-back"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-buttons right end>
+			<button ion-button (click)="onSocialShare()">
+				<custom-icon set="ozhome" name="share"></custom-icon> {{ 'Share' | translate}}
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+	<!-- Tablet nav -->
+	<ion-navbar text-center *ngIf="isTablet">
+		<ion-buttons left start>
+			<button ion-button (click)="onSocialShare()">
+				<custom-icon set="ozhome" name="share"></custom-icon> {{ 'Share' | translate}}
+			</button>
+		</ion-buttons>
+		<ion-title>{{property.Address}}</ion-title>
+		<ion-buttons right end>
+			<button ion-button navPop>
+				{{ 'Close' | translate}}
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-card>
+		<property-status-label [property]="property"></property-status-label>
+		<ion-slides #slider *ngIf="property.Images || videoEmbedUrl" [loop]="hasMoreThanOneSlide" autoHeight="true" [pager]="hasMoreThanOneSlide" paginationType="fraction">
+			<ion-slide *ngFor="let image of property.Images;let i = index" (click)="showImages(i)">
+				<img [src]="image"/>
+			</ion-slide>
+			 <ion-slide *ngIf="videoEmbedUrl">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="youtube-player" type="text/html"  [src]="videoEmbedUrl" frameborder="0"> </iframe>
+				</div>
+			</ion-slide>
+		</ion-slides>
+		<shortlist-component [property]='property'></shortlist-component>
+
+		<ion-card-content class="property-meta">
+			<div>
+				<div class="col col-title">
+					<ion-card-title>
+						{{property.Price}}
+					</ion-card-title>
+				</div>
+				<div class="col col-amenities" *ngIf="property.PropertyType != 'Land'">
+					<ul class="amenities">
+						<li><custom-icon set="ozhome" name="bed"></custom-icon> {{property.Bedrooms}}</li>
+						<li><custom-icon set="ozhome" name="bathroom"></custom-icon> {{property.Bathrooms}}</li>
+						<li *ngIf="property.Parking > 0"><custom-icon set="ozhome" name="car"></custom-icon> {{property.Parking}}</li>
+					</ul>
+				</div>
+				<div class="col col-amenities" *ngIf="property.PropertyType === 'Land'">
+					<ul class="amenities">
+						<li>{{'Land' | translate}}: {{property.LandSize}} <span [innerHTML]="property.LandType | translate"></span>
+							</li>
+					</ul>
+				</div>
+
+				<div class="col col-address-{{property.FloorPlans ? '9' : '12'}}">
+					<p>
+						{{property.Address}}
+					</p>
+				</div>
+				<div class="col col-floorplan" *ngIf="property.FloorPlans.length > 0">
+					<a (click)="showFloorplans()" class="floorplan">
+						<custom-icon set="ozhome" name="floorplan"></custom-icon>
+						{{ 'Floor plan' | translate}}
+					</a>
+				</div>
+			</div>
+		</ion-card-content>
+
+	</ion-card>
+
+	<ion-card>
+		<ion-card-content>
+			<ion-card-title>{{property.Heading}}</ion-card-title>
+			<div [class]="isFullDescriptionShown ? 'item-expand active' : 'item-expand inactive'">
+				<div [innerHtml]="property.FullDescription"></div>
+			</div>
+			<ion-card-content text-center (click)="toggleDescription()" class="item-expand-footer" [hidden]="isFullDescriptionShown">
+				{{ 'See more' | translate}}
+				<ion-icon name="arrow-down"></ion-icon>
+			</ion-card-content>
+			<ion-card-content text-center (click)="toggleDescription()" class="item-expand-footer" [hidden]="!isFullDescriptionShown">
+				{{ 'See less' | translate}}
+				<ion-icon name="arrow-up"></ion-icon>
+			</ion-card-content>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-title padding-vertical>
+			{{ 'Property details' | translate }}
+		</ion-card-title>
+
+		<div class="property-details" *ngIf="property.PropertyType != 'Land'">
+			<div>
+				<strong>{{ 'Property ID' | translate }}</strong> <br/> {{property.PropertyID}}
+			</div>
+			<div>
+				<strong>{{ 'PropertyState' | translate }}</strong> <br/> {{property.State}}
+			</div>
+			<div>
+				<strong>{{ 'Category' | translate }}</strong> <br/> {{property.PropertyType | translate}}
+			</div>
+			<div>
+				<strong>{{ 'Suburb' | translate }}</strong> <br/> {{property.Suburb}}
+			</div>
+			<div *ngIf="property.Bedrooms">
+				<strong>{{ 'Bedrooms' | translate }}</strong> <br/> {{property.Bedrooms}}
+			</div>
+			<div *ngIf="property.Street">
+				<strong>{{ 'Street' | translate }}</strong> <br/> {{property.Street}}
+			</div>
+			<div *ngIf="property.Bathrooms">
+				<strong>{{ 'Bathrooms' | translate }}</strong> <br/> {{property.Bathrooms}}
+			</div>
+			<div *ngIf="property.SaleType">
+				<strong> {{ 'Sale Type' | translate }}</strong> <br/> {{property.SaleType | translate}}
+			</div>
+			<div>
+				<strong>{{ 'Car spaces' | translate }}</strong> <br/> {{property.Parking}}
+			</div>
+			<div *ngIf="property.Price">
+				<strong>{{ 'PropertyPrice' | translate }}</strong> <br/> {{property.Price}}
+			</div>
+		</div>
+		<div class="property-details" *ngIf="property.PropertyType === 'Land'">
+			<div>
+				<strong>{{ 'Property ID' | translate }}</strong> <br/> {{property.PropertyID}}
+			</div>
+			<div>
+				<strong>{{ 'PropertyState' | translate }}</strong> <br/> {{property.State}}
+			</div>
+			<div>
+				<strong>{{ 'Category' | translate }}</strong> <br/> {{property.PropertyType | translate}}
+			</div>
+			<div>
+				<strong>{{ 'Suburb' | translate }}</strong> <br/> {{property.Suburb}}
+			</div>
+			<div>
+				<strong>{{ 'Sale Type' | translate }}</strong> <br/> {{property.SaleType | translate}}
+			</div>
+			<div>
+				<strong>{{ 'Land Size' | translate }}</strong> <br/> {{property.LandSize}} <span [innerHTML]="property.LandType | translate"></span>
+			</div>
+			<div>
+				<strong>{{ 'PropertyPrice' | translate }}</strong> <br/> {{property.Price | translate}}
+			</div>
+			<div *ngIf="property.CrossOver">
+				<strong>{{ 'Crossover' | translate }}</strong> <br/> {{property.CrossOver | translate}}
+			</div>
+			<div *ngIf="property.Frontage">
+				<strong>{{ 'Frontage' | translate }}</strong> <br/> {{property.Frontage | translate}} {{'m' | translate}}
+			</div>
+			<div *ngIf="property.RearDepth">
+				<strong>{{ 'Rear Depth'  | translate }}</strong> <br/> {{property.RearDepth | translate}}
+			</div>
+			<div *ngIf="property.LeftDepth">
+				<strong>{{ 'Left Depth' | translate }}</strong> <br/> {{property.LeftDepth | translate}}
+			</div>
+			<div *ngIf="property.RightDepth">
+				<strong>{{ 'Right Depth' | translate }}</strong> <br/> {{property.RightDepth | translate}}
+			</div>
+		</div>
+	</ion-card>
+
+	<ion-card *ngIf="showInspectionAuctionTimes">
+		<ion-card-content class="no-padding-bottom no-padding-top">
+			<ion-card-title padding-top>
+				<span *ngIf="property.SaleType == 'Auction'">{{ 'InspectionAuctionTitle' | translate }}</span>
+				<span *ngIf="property.SaleType != 'Auction'">{{ 'Inspection Times' | translate }} </span>
+			</ion-card-title>
+
+			<ion-list *ngIf="property.Inspections && property.Inspections.length" class="property-events">
+				<ion-list-header text-capitalize>
+					{{ 'Inspections' | translate }}
+				</ion-list-header>
+				<ion-item *ngFor="let inspection of property.Inspections">
+					<div item-left>
+						{{getDateComponent(inspection.Start)}}
+					</div>
+					<div item-right>
+						<span>{{getDateTimeComponent(inspection.Start)}} - {{getDateTimeComponent(inspection.End)}}</span>
+						<button ion-button clear icon-only (click)="addInspectionToCalendar(property, inspection)">
+							<i class="icon icon-calendar">
+								<svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22">
+									<g fill="none" fill-rule="evenodd">
+										<path fill="#0F76BB" d="M19 6V4h-1v2h-2v1h2v2h1V7h2V6h-2zm2 7.573V20H0V5c0-.552.439-1 .999-1H4V2.499C4 1.67 4.666 1 5.5 1 6.328 1 7 1.665 7 2.499V4h4.427a7.534 7.534 0 0 0-.277 4H1v11h19v-5.15c.342-.07.676-.162 1-.277zM11.865 10A7.534 7.534 0 0 0 14 12.5v.5h-3v-3h.865zM11 14h3v3h-3v-3zm4 0h3v3h-3v-3zM3 10h3v3H3v-3zm0 4h3v3H3v-3zm4-4h3v3H7v-3zm0 4h3v3H7v-3zm11.5-2a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+										<path fill="#87BADD" d="M0 21h21v1H0z"/>
+									</g>
+								</svg>
+							</i>
+						</button>
+					</div>
+				</ion-item>
+			</ion-list>
+			<ion-list *ngIf="property.SaleType == 'Auction'" class="property-events auction-event">
+				<ion-list-header text-capitalize>
+					{{ 'Auction' | translate }}
+				</ion-list-header>
+				<ion-item>
+					<div item-left>
+						{{getDateComponent(property.AuctionDate)}}
+					</div>
+					<div item-right>
+						<span>{{getDateTimeComponent(property.AuctionDate)}}</span>
+						<button ion-button clear icon-only (click)="addAuctionToCalendar(property)">
+							<i class="icon icon-calendar">
+							<svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22">
+								<g fill="none" fill-rule="evenodd">
+									<path fill="#0F76BB" d="M19 6V4h-1v2h-2v1h2v2h1V7h2V6h-2zm2 7.573V20H0V5c0-.552.439-1 .999-1H4V2.499C4 1.67 4.666 1 5.5 1 6.328 1 7 1.665 7 2.499V4h4.427a7.534 7.534 0 0 0-.277 4H1v11h19v-5.15c.342-.07.676-.162 1-.277zM11.865 10A7.534 7.534 0 0 0 14 12.5v.5h-3v-3h.865zM11 14h3v3h-3v-3zm4 0h3v3h-3v-3zM3 10h3v3H3v-3zm0 4h3v3H3v-3zm4-4h3v3H7v-3zm0 4h3v3H7v-3zm11.5-2a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+									<path fill="#87BADD" d="M0 21h21v1H0z"/>
+								</g>
+							</svg>
+							</i>
+						</button>
+					</div>
+				</ion-item>
+			</ion-list>
+			<div text-center>
+				<button ion-button clear class="btn-link bold" (click)="scheduleAppointment()">{{ 'ScheduleInspection' | translate }}</button>
+			</div>
+
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card tappable (click)="loadExternalMaps()" >
+			<!--<div #map id="map" class="detail-map"></div>-->
+			<img src="https://maps.googleapis.com/maps/api/staticmap?center={{property.Latitude}},{{property.Longtitude}}&zoom=16&size=600x275&markers=color:orange%7C{{property.Latitude}},{{property.Longtitude}}"  alt="map" />
+	</ion-card>
+
+	<ion-card text-center>
+		<ion-card-content class="no-padding-bottom">
+			<img class="agency" *ngIf="property.RealestateOfficeLogo" [src]="property.RealestateOfficeLogo" [alt]="property.Address">
+			<h2>{{property.RealEstateName}}</h2>
+			<p>{{property.RealEstateAddress}}</p>
+			<ion-list class="agents-list">
+				<ion-item *ngFor="let agent of property.Agents" [ngClass]="{ single: property.Agents.length == 1}">
+					<ion-avatar item-left>
+						<span>
+							<img *ngIf="agent.AgentImage" [src]="agent.AgentImage">
+							<img *ngIf="!agent.AgentImage" src="./assets/svg/agentdefault.svg">
+						</span> {{agent.AgentName}}
+					</ion-avatar>
+					<div item-right *ngIf="showAgentNumber(agent)">
+						<p class="agent-contact">
+							<a (click)="callAgent(agent)">{{getAgentNumber(agent, true)}}</a>
+						</p>
+					</div>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngIf="property.RelatedProperties && property.RelatedProperties.length">
+		<ion-card-content no-padding>
+			<ion-card-title padding-vertical>
+				{{ 'Related Properties' | translate }}
+			</ion-card-title>
+			<property-summary-box [property]="r_prop" *ngFor="let r_prop of property.RelatedProperties" (click)="onViewRelatedProperty(r_prop)"></property-summary-box>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+
+<ion-footer text-center *ngIf="property.Agents && property.Agents.length">
+	<a ion-button (click)="callAgent(primaryAgent)" *ngIf="!isTablet">
+		{{ 'Call agent' |  translate }}</a>
+	<button ion-button [hidden]="!smsEnabled" (click)="smsAgent()" *ngIf="!isTablet">
+		{{'SMS agent' | translate}}
+	</button>
+	<button ion-button (click)="emailEnquiry()">
+		{{ 'Email enquiry' | translate }}
+	</button>
+</ion-footer>

@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-split-pane>
+    <!--  our side menu  -->
+    <ion-menu [content]="content" id="menu2">
+      <ion-nav [root]="leftPage" #sideMenu></ion-nav>
+    </ion-menu>
+
+    <!-- the main content -->
+    <ion-nav [root]="rightPage" #content main></ion-nav>
+  </ion-split-pane>
+</ion-content>

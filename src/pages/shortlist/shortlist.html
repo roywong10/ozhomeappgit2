@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title text-center> {{ 'Shortlist' | translate }}</ion-title>
+		<ion-buttons right aria-expanded="" [hidden]="!shortlistProperties.length || isTablet">
+			<button ion-button (click)="onToggleMapView()">
+				<i class="icon icon-map">
+					<svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12">
+						<g fill="#FFF" fill-rule="evenodd">
+							<path d="M0 2l3-2v10l-3 2V2zm8 0l3-2v10l-3 2V2z" opacity=".7"/>
+							<path d="M4 0l3 2v10l-3-2z"/>
+						</g>
+					</svg>
+				</i>  {{ 'Map' | translate }}
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content [hidden]="!shortlistProperties.length">
+	<div *ngIf="!isLoggedIn" class="sync">
+		<button ion-item block text-wrap (click)="goLoginPage()">
+			<div item-left>
+				<custom-icon set="ozhome" name="sync" ></custom-icon>
+			</div>
+			<p>{{ 'ShortlistLoginMessage' | translate }}</p>
+		</button>
+	</div>
+	 <property-list-component tappable *ngFor="let property of shortlistProperties" [showInspectionLabel]="true" (click)="onViewProperty(property.PropertyID)"
+	 [property]='property'>
+	</property-list-component>
+</ion-content>
+
+<ion-content [hidden]="shortlistProperties.length" text-center class="empty-shortlist">
+	<ion-grid>
+		<ion-row align-items-center>
+			<ion-col align-items-center>
+				<img height="133" width="80" src="assets/svg/emptyshortlist.svg" alt=""/>
+				<p class="empty-shortlist-text">
+					<span [innerHTML]="'ShortlistEmptyBeforeIcon' | translate"></span>
+					<custom-icon set="ozhome" name="shortlist"></custom-icon> {{'ShortlistEmptyAfterIcon' | translate}}
+				</p>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

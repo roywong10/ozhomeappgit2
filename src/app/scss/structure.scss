@@ -1,0 +1,217 @@
+ion-tabs {
+	background: $white;
+}
+
+ion-tab {
+	transition: opacity .3s ease;
+	opacity: 0;
+	display: block;
+}
+
+ion-tab.show-tab {
+	opacity: 1;
+	position: relative;
+	z-index: 9;
+}
+
+page-login,
+page-forgot-password,
+page-sign-up,
+page-sign-up-form,
+page-request-location-access {
+	.content {
+		background:
+			radial-gradient(circle at 100% 100%, #1396ee, #0f76bb),
+ 			radial-gradient(circle at 100% 100%, #1396ee, #0f76bb);
+	}
+
+	.header-ios .toolbar-background-ios {
+		border: 0;
+		background: transparent;
+	}
+
+	.btn-login {
+		margin-bottom: 10px;
+		font-weight: bold;
+
+		&.btn-email {
+			margin-bottom: 0;
+			margin-top: 20px;
+		}
+	}
+
+}
+
+.toolbar-ios {
+	padding: 4px 10px;
+	height: 44px;
+
+	small {
+		color: $light-blue;
+	}
+
+	.toolbar-title-long {
+		white-space: normal;
+		padding: 0 60px;
+		line-height: 1.1em;
+	}
+}
+
+.ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child {
+	//min-height: 44px;
+	//padding-top: 0;
+}
+
+.ios ion-tab > .ion-page > ion-header > .toolbar.statusbar-padding:first-child,
+.ios .filters-modal .ion-page > ion-header > .toolbar.statusbar-padding:first-child {
+	min-height: 64px;
+}
+
+.alert-ios {
+	ion-backdrop {
+		opacity: .3;
+	}
+
+	.alert-wrapper {
+		border-radius: 4px;
+
+		.alert-sub-title {
+			color: $text-color;
+			font-size: 1.6rem;
+		}
+	}
+}
+
+.location-alert {
+	top: 44px;
+	bottom: 49px;
+
+	.alert-head {
+		margin-bottom: 10px;
+	}
+
+	.alert-button-group {
+		margin: 0 20px;
+	}
+
+	.alert-button {
+		background: map-get($colors, primary);
+		color: $white;
+		border-radius: 2px;
+		border: 0;
+	}
+
+	.alert-message {
+		display: none;
+	}
+}
+
+.ios {
+	.location-alert {
+		top: 64px;
+	}
+}
+
+.scroll-content {
+	//margin-top: 44px !important;
+}
+
+//ios top padding to account for the top phone bar
+.statusbar-padding {
+	padding-top: 24px;
+}
+
+.ios page-alerts {
+	> .content {
+		> .scroll-content {
+			margin-top: 64px !important;
+		}
+	}
+}
+
+.platform-android page-alerts {
+	> .content {
+		> .scroll-content {
+			margin-top: 44px !important;
+		}
+	}
+}
+
+//check on adroid?
+// .ios page-shortlist {
+// 	> .content {
+// 		> .scroll-content {
+// 			margin-top: 44px !important;
+// 		}
+// 	}
+// }
+
+@media (min-width: $screen-sm) {
+	.container {
+		width: 448px;
+		margin: 0 auto;
+	}
+
+	page-login,
+	page-forgot-password,
+	page-sign-up,
+	page-sign-up-form,
+	page-request-location-access {
+		.scroll-content {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	page-property-list,
+	page-property-map,
+	page-shortlist,
+	shortlist-map {
+		.scroll-content {
+			margin-bottom: 0 !important;
+		}
+	}
+
+	page-split {
+		> .content {
+			> .scroll-content {
+				margin-top: 0 !important;
+			}
+		}
+	}
+
+	//check on adroid?
+	.ios page-shortlist {
+		> .content {
+			> .scroll-content {
+				margin-top: 64px !important;
+			}
+		}
+	}
+
+
+
+	.location-alert {
+		left: 375px;
+	}
+
+	.ios .modal-wrapper {
+		page-privacy-policy,
+		page-terms-conditions,
+		page-property-detail,
+		page-enquiry-form,
+		page-alerts-edit,
+		page-edit-profile,
+		page-change-password {
+			> ion-header > .toolbar.statusbar-padding:first-child {
+				padding-top: 3px;
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-sm) {
+
+}
+
+

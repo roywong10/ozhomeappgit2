@@ -1,0 +1,316 @@
+.item-radio {
+	.label-ios {
+		font-size: 1.6rem;
+	}
+}
+
+.radio-ios {
+	.radio-icon {
+		width: 22px;
+		height: 22px;
+		border: 1px #bfbfbf dashed; //colour used once
+		transition: border .3s, background .3s;
+		border-radius: 50%;
+	}
+
+	.radio-checked {
+		border: 1px dashed $green;
+		background-color: $green;
+
+		.radio-inner {
+			top: 3px;
+			left: 7px;
+			width: 6px;
+			height: 11px;
+			border-width: 2px;
+			border-top-width: 0;
+			border-left-width: 0;
+			border-color: $white;
+		}
+	}
+}
+
+.checkbox-ios {
+	.checkbox-icon {
+		width: 22px;
+		height: 22px;
+		border-radius: 2px;
+		transition: border .3s, background .3s;
+
+		.checkbox-inner {
+			border-color: map-get($colors, primary);
+			border-top: 0;
+			border-left: 0;
+			top: -5px;
+			left: 6px;
+			width: 6px;
+			height: 11px;
+			border-width: 2px;
+			opacity: 0;
+			transition: opacity .3s, top .3s;
+		}
+	}
+
+	.checkbox-checked {
+		background: transparent;
+		border-color: map-get($colors, primary);
+		border-width: 2px;
+
+		.checkbox-inner {
+			opacity: 1;
+			top: 2px;
+		}
+	}
+}
+
+.item-radio-checked.item-ios ion-label {
+	color: $text-color;
+}
+
+// Terms and conditions acceptance checkbox needed adjustments beacuse of links inside
+.card-ios .tc-checkbox {
+	padding-left: 30px;
+	position: relative;
+	margin-bottom: 20px;
+
+	.checkbox-ios {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+.radio-list {
+	.item-ios {
+		padding: 0;
+	}
+
+	.item-inner {
+		padding: 0 10px;
+	}
+}
+
+.form {
+	padding: 15px;
+
+	.item-ios {
+		padding-left: 10px;
+	}
+}
+
+.item-input {
+	ion-label {
+		font-size: 1.5rem;
+		width: 50px;
+
+		.form-enquiry & {
+			width: 80px;
+		}
+	}
+}
+
+.label-ios + ion-textarea .text-input {
+	margin-left: 10px;
+}
+
+.text-input-ios {
+	font-size: 1.5rem;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+
+	.item-ios {
+		border: 1px solid $grey-border;
+		border-top: 0;
+
+		&:first-child {
+			border-radius: 1px 1px 0 0;
+			border-top: 1px solid $grey-border;
+		}
+
+		&:last-child {
+			border-radius: 0 0 1px 1px;
+			margin-bottom: 20px;
+		}
+
+		&.invalid {
+			border: 1px solid $error-red;
+			margin-top: -1px;
+
+			&:first-child {
+				border-top: 1px solid $error-red;
+			}
+
+		}
+	}
+}
+
+.checkbox-list {
+	.item-ios {
+		padding-left: 0;
+	}
+
+	.item-inner {
+		padding-left: 15px;
+	}
+}
+
+form,
+.checkbox-list {
+	.alert-danger {
+		border-color: $error-red;
+		font-size: 1.2rem;
+		color: $red;
+		min-height: 0;
+		overflow: visible;
+		margin-top: -10px;
+		display: block;
+
+		.label-ios {
+			margin: 0 0 10px;
+		}
+	}
+
+	.error-message {
+		color: $error-red;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+
+	.tc-checkbox {
+		.alert-danger {
+			margin-top: 10px;
+		}
+	}
+}
+
+
+.checkbox-ios.invalid {
+	.checkbox-icon {
+		border-color: $error-red;
+	}
+}
+
+.alert-name .input-ios.invalid {
+	border: 1px solid $error-red;
+}
+
+
+// Toggle switch, i.e  Search surrounding suburbs
+.toggle-ios {
+	height: 26px;
+
+	.toggle-inner {
+		width: 22px;
+		height: 22px;
+	}
+
+	&.toggle-checked {
+		.toggle-inner {
+			transform: translate3d(24px, 0, 0);
+
+			&::before,
+			&::after {
+				content: '';
+				width: 2px;
+				height: 12px;
+				background: $green;
+				border-radius: 1px;
+				position: absolute;
+				left: 10px;
+				top: 5px;
+				transition: all .2s ease;
+				will-change: transform;
+			}
+
+			&::before {
+				transform: rotate(37deg);
+				left: 12px;
+				height: 12px;
+			}
+
+			&::after {
+				transform: rotate(140deg);
+				height: 6px;
+				top: 10px;
+				left: 7px;
+			}
+		}
+
+		.toggle-icon {
+			background: $green;
+		}
+	}
+}
+
+
+//Selectbox control - Edit my Account, Sign up form
+ion-select {
+	max-width: 100%;
+	width: calc(100% - 80px);
+
+	.select-text {
+		font-size: 1.5rem;
+	}
+}
+
+.select-ios .select-icon {
+	width: 13px;
+
+	.select-icon-inner {
+		width: 16px;
+		height: 10px;
+		border: 0;
+		margin-top: -3px;
+		position: relative;
+
+		&::before,
+		&::after {
+			content: '';
+			width: 10px;
+			height: 2px;
+			background: map-get($colors, secondary);
+			border-radius: 1px;
+			position: absolute;
+
+		}
+
+		&::before {
+			transform: rotate(45deg);
+			top: 5px;
+			left: -3px;
+		}
+
+		&::after {
+			transform: rotate(-45deg);
+			top: 5px;
+			left: 3px;
+		}
+	}
+}
+
+.label-ios + ion-input .text-input {
+	margin-left: 10px;
+}
+
+@media (min-width: 410px) {
+
+	page-sign-up-form {
+		.alert-danger {
+			padding-left: 107px !important;
+		}
+	}
+
+	form {
+		.error-message {
+			margin-bottom: 25px;
+			font-size: 1.6rem;
+		}
+	}
+
+}
+

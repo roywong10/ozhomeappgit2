@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <g fill="#F7941F" fill-rule="evenodd">
+        <ellipse cx="9.643" cy="17.714" opacity=".2" rx="10" ry="1.286"/>
+        <text font-family="NunitoSans-Bold, Nunito Sans" font-size="21" font-weight="bold">
+            <tspan x="2" y="18">A</tspan>
+        </text>
+    </g>
+</svg>

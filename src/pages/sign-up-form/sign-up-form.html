@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'SignUpTitle' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header text-center>
+            <ion-img src="./assets/svg/logo-blue.svg" alt="OzHome Logo"></ion-img>
+        </ion-card-header>
+        <ion-card-content>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <p *ngIf="errorMessage !== ''" [innerHtml]="errorMessage" class="error-message"></p>
+                <fieldset>
+                    <ion-item [class.invalid]="!signupForm.controls.firstName.valid && (signupForm.controls.firstName.dirty || hasSubmitted)">
+                        <ion-label>{{ 'First Name' | translate }}</ion-label>
+                        <ion-input type="text" formControlName="firstName" name="firstName" placeholder="John"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!signupForm.controls.firstName.valid && hasSubmitted" class="alert alert-danger">{{'FirstNameReqMsg' | translate}}</ion-item>
+
+                    <ion-item [class.invalid]="!signupForm.controls.lastName.valid && (signupForm.controls.lastName.dirty || hasSubmitted)">
+                        <ion-label>{{ 'Last Name' | translate }}</ion-label>
+                        <ion-input type="text" formControlName="lastName" placeholder="Smith"></ion-input>
+                    </ion-item>
+                    <!-- <ion-item *ngIf="!signupForm.controls.lastName.valid && hasSubmitted" class="alert alert-danger">{{'LastNameReqMsg' | translate}}.</ion-item> -->
+
+                    <ion-item [class.invalid]="!signupForm.controls.email.valid && (signupForm.controls.email.dirty || hasSubmitted)">
+                        <ion-label>{{ 'Email' | translate }}</ion-label>
+                        <ion-input type="email" formControlName="email" placeholder="john@internet.com.au"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!signupForm.controls.email.valid && hasSubmitted" class="alert alert-danger">{{'EmailInvalidMsg' | translate }}</ion-item>
+
+                    <ion-item [class.invalid]="!signupForm.controls.state.valid && (signupForm.controls.state.dirty || hasSubmitted)">
+                        <ion-label>{{ 'State' | translate }}</ion-label>
+                        <ion-select interface="popover" formControlName="state" [placeholder]="'Please select' | translate">
+                            <ion-option value="ACT">ACT</ion-option>
+                            <ion-option value="NSW">NSW</ion-option>
+                            <ion-option value="NT">NT</ion-option>
+                            <ion-option value="QLD">QLD</ion-option>
+                            <ion-option value="SA">SA</ion-option>
+                            <ion-option value="TAS">TAS</ion-option>
+                            <ion-option value="VIC">VIC</ion-option>
+                            <ion-option value="WA">WA</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <!-- <ion-item *ngIf="!signupForm.controls.state.valid && hasSubmitted" class="alert alert-danger">{{'StateReqMsg' | translate}}</ion-item> -->
+
+                    <ion-item [class.invalid]="!signupForm.controls.postcode.valid && (signupForm.controls.postcode.dirty || hasSubmitted)">
+                        <ion-label>{{ 'Postcode' | translate }}</ion-label>
+                        <ion-input type="text" formControlName="postcode" placeholder="3000" minlength="4" maxlength="4"></ion-input>
+                    </ion-item>
+                    <!-- <ion-item *ngIf="!signupForm.controls.postcode.valid && hasSubmitted" class="alert alert-danger">{{'PostcodeReqMsg' | translate}}</ion-item> -->
+
+                    <ion-item [class.invalid]="!signupForm.controls.password.valid && (signupForm.controls.password.dirty || hasSubmitted)">
+                        <ion-label>{{ 'Password' | translate }}</ion-label>
+                        <ion-input type="password" formControlName="password" [placeholder]="'PasswordPlaceholder' | translate"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!signupForm.controls.password.valid && hasSubmitted" class="alert alert-danger">{{'PwdReqMsg' | translate}}</ion-item>
+
+                </fieldset>
+                <p text-wrap class="tc-checkbox">
+                    <ion-checkbox formControlName="agreeTerms"></ion-checkbox>
+                    <span *ngIf="language === 'en'">
+                        By signing up, I agree to Ozhome's  <a (click)="viewTermsConditions()">Terms and Conditions</a> and
+                          <a (click)="viewPrivacyPolicy()">Privacy Policy</a>.                       
+                    </span>
+                    <span *ngIf="language === 'zh'">
+                          我已经阅读并同意本站的<a (click)="viewTermsConditions()">{{'Terms and Conditions' | translate }}</a>和
+                          <a (click)="viewPrivacyPolicy()">{{'Privacy Policy' | translate }}</a>. 
+                    </span>
+                </p>
+                <p *ngIf="!signupForm.controls.agreeTerms.valid && hasSubmitted" class="error-message">{{'AgreeTermsMsg'| translate}}</p>
+                <button ion-button block type="submit">{{'SubmitButton' | translate}}</button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

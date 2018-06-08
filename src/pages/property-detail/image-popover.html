@@ -1,0 +1,22 @@
+<ion-header>
+	<!-- Mobile nav -->
+	<ion-navbar text-center hideBackButton="false">
+		<ion-buttons left aria-expanded="">
+			<button ion-button navPop>
+				<ion-icon name="arrow-back"></ion-icon>
+			</button>
+		</ion-buttons>
+    </ion-navbar>
+</ion-header>
+<div class="modal image-modal transparent">
+    <ion-slides [loop]="true" zoom="true" autoHeight="true" [pager]="true" paginationType="fraction" [initialSlide]="activeSlide">
+        <ion-slide *ngFor="let image of allImages">
+            <div class="swiper-zoom-container"><img [src]="image" class="fullscreen-image" style="height: 100%; width: 100%; object-fit: contain" /></div>
+        </ion-slide>
+        <ion-slide *ngIf="videoUrl">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="youtube-player" type="text/html" [src]="videoUrl" frameborder="0"> </iframe>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</div>

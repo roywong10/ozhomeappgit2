@@ -1,0 +1,35 @@
+page-privacy-policy,
+page-terms-conditions  {
+	h1 {
+		font-size: 1.8rem;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	h2 {
+		font-size: 1.6rem;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	p,
+	li {
+		line-height: 22px;
+	}
+
+	ul {
+		list-style-type: lower-alpha;
+		padding-left: 20px;
+
+		li {
+			margin-bottom: 5px;
+		}
+
+		ul {
+			list-style-type: lower-roman;
+			margin: 10px 0;
+		}
+	}
+}
+
+

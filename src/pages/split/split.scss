@@ -1,0 +1,13 @@
+page-split {
+
+}
+
+@media (min-width: $screen-sm) {
+
+	.split-pane-ios.split-pane-visible > .split-pane-side {
+		border: 0;
+		max-width: 375px;
+	}
+
+}
+

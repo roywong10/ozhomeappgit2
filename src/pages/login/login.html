@@ -1,0 +1,59 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>{{ 'LoginTitle' | translate }}</ion-title>
+		<ion-buttons right *ngIf="isFirstTime">
+			<button ion-button (click)="skipLogin()">{{ 'Skip' | translate }}</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content padding text-center>
+
+	<div class="container">
+
+		<!--<ion-img height="62" width="195" src="./assets/svg/logo.svg" alt="OzHome Logo"></ion-img>-->
+
+		<button ion-button block icon-left class="btn-login btn-facebook" (click)="facebookLogin()">
+			<custom-icon set="ozhome" name="facebook"></custom-icon> {{ 'LoginFacebook' | translate }}
+		</button>
+
+		<!--<button ion-button block class="btn-login btn-wechat">
+			<custom-icon set="ozhome" name="wechat"></custom-icon> Log in using WeChat
+		</button>-->
+
+		<ion-card class="card-login">
+			<ion-card-header>
+				{{ 'LoginEmail' | translate }}
+			</ion-card-header>
+			<ion-card-content>
+				<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+					<p *ngIf="errorMessage !== ''" [innerHtml]="errorMessage" class="error-message"></p>
+
+					<fieldset>
+						<ion-item [class.invalid]="!loginForm.controls.username.valid && (loginForm.controls.username.dirty || hasSubmitted)">
+							<ion-input type="email" placeholder="{{ 'Email' | translate }}" formControlName="username"></ion-input>
+						</ion-item>
+						<ion-item *ngIf="!loginForm.controls.username.valid && hasSubmitted" class="alert alert-danger">{{'EmailInvalidMsg' | translate}}</ion-item>
+
+						<ion-item [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || hasSubmitted)">
+							<ion-input type="password" formControlName="password" placeholder="{{ 'Password' | translate }}"></ion-input>
+						</ion-item>
+						<ion-item *ngIf="!loginForm.controls.password.valid && hasSubmitted" class="alert alert-danger">{{'PwdReqMsg' | translate}}.</ion-item>
+					</fieldset>
+
+					<p text-center><a (click)="goForgotPwd()">{{ 'Forgot password?' | translate }}</a></p>
+
+					<button ion-button icon-left block type="submit" class="btn-login btn-email">
+						<custom-icon set="ozhome" name="email"></custom-icon> {{ 'LoginButton' | translate }}
+					</button>
+				</form>
+			</ion-card-content>
+		</ion-card>
+		<h6 class="text-white">{{'Not a member?' | translate}}</h6>
+		<button ion-button block icon-left class="btn-login btn-email" (click)="goSignUpForm()">
+			<custom-icon set="ozhome" name="email"></custom-icon> {{ 'SignUpEmail' | translate }}
+		</button>
+	</div>
+</ion-content>

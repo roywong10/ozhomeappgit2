@@ -1,0 +1,123 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>{{ 'Property Alerts' | translate }}</ion-title>
+		<ion-buttons right>
+			<button *ngIf="isLoggedIn" ion-button icon-left end (click)="createAlert()" class="btn-new-alert">
+        	<ion-icon ios="md-add-circle" name="icon-add-circle"></ion-icon> {{ 'New Alert' | translate }}</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content *ngIf="alerts.length > 0"  class="alerts-list-content">
+	<ion-list class="alert-list">
+		<ion-item *ngFor="let alert of alerts" >
+			<button (click)="onSearch(alert)">
+				<h2>{{alert.AlertName}}</h2>
+				<p>
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<g fill="#999999" fill-rule="evenodd">
+								<path d="M15 8h1.005a1 1 0 0 1 .995.997v6.006c0 .55-.456.997-.995.997h-8.01A1 1 0 0 1 7 15.003V8.997c0-.55.456-.997.995-.997H9V6h1v2h4V6h1v2zM5 4h13.007c.548 0 .993.444.993 1 0 .552-.445 1-.993 1H5v14H3V6H1.993A.994.994 0 0 1 1 5c0-.552.445-1 .993-1H3V1.995a1.001 1.001 0 0 1 2 0V4z"/>
+								<ellipse cx="12.143" cy="19.214" opacity=".2" rx="5.5" ry="1"/>
+							</g>
+						</svg>
+						{{(alert.IsSold ? 'Sold' : 'For Sale') | translate}}
+					</span>
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<g fill="#999999" fill-rule="evenodd">
+								<ellipse cx="9.786" cy="18.714" opacity=".2" rx="6.5" ry="1.286"/>
+								<path d="M1.5 12.522a.997.997 0 0 1 .002-1.41L10.613 2l7.636 7.636-9.111 9.11a1 1 0 0 1-1.411.002L1.5 12.522zM17.159 2c.637 0 1.09.455 1.09 1.09v6.546L10.614 2h6.545zM9.502 13.464c.524 0 .976-.191 1.358-.573.32-.32.496-.654.527-1a2.03 2.03 0 0 0-.152-.987 9.197 9.197 0 0 0-.58-1.103c-.184-.306-.32-.552-.41-.735a1.305 1.305 0 0 1-.142-.538.606.606 0 0 1 .191-.46.74.74 0 0 1 .683-.222c.261.045.52.194.774.449.457.457.757 1.082.898 1.874l1.139-.432a2.61 2.61 0 0 0-.244-.93 4.927 4.927 0 0 0-.577-.965l.771-.77-.849-.849-.791.792c-.514-.363-1.042-.544-1.584-.544-.543 0-1.002.188-1.38.565-.325.325-.504.667-.537 1.026-.033.358.017.697.149 1.018.132.32.33.697.594 1.131.179.302.31.54.396.714.085.175.132.342.141.502.01.16-.045.3-.162.418a.728.728 0 0 1-.68.219c-.259-.047-.532-.215-.82-.502-.537-.538-.876-1.202-1.018-1.994l-1.138.431c.042.344.15.696.322 1.057.172.36.4.706.682 1.036l-.764.764.849.848.792-.792c.518.368 1.04.552 1.562.552zM16 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+							</g>
+						</svg>
+						{{getDisplayPrice(alert.PriceFrom, alert.PriceTo)}}
+					</span>
+					<br class="hidden-sm" />
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<path fill="#999999" fill-rule="evenodd" d="M14 5.111L10 2 1 9h18l-2-1.556V2h-3v3.111zM1 9h18v10H1V9zm3 2v8h4v-8H4zm7 0v2h2v-2h-2zm3 0v2h2v-2h-2zm0 3v2h2v-2h-2zm-3 0v2h2v-2h-2z"/>
+						</svg>
+						{{getDisplayPropertyTypes(alert.propertyTypeList)}}
+					</span>
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<g fill="#999999" fill-rule="evenodd">
+								<ellipse cx="9.643" cy="17.714" opacity=".2" rx="10" ry="1.286"/>
+								<path d="M16 16H3v1.01c0 .546-.444.99-1 .99a1 1 0 0 1-1-.99V16H.995A.998.998 0 0 1 0 15.01v-4.02c0-.546.45-.99.995-.99h17.01c.55 0 .995.451.995.99v4.02c0 .546-.45.99-.995.99H18v1.01c0 .546-.444.99-1 .99a1 1 0 0 1-1-.99V16zm0-8a1 1 0 0 0-.99-1h-4.02A.993.993 0 0 0 10 8v1H9V8a1 1 0 0 0-.99-1H3.99A.993.993 0 0 0 3 8v1H1V3h17v6h-2V8z"/>
+							</g>
+						</svg>
+							{{alert.Bedrooms > 1 ? alert.Bedrooms : 1}}+
+					</span>
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<g fill="#999999" fill-rule="evenodd">
+								<ellipse cx="10.143" cy="17.714" opacity=".2" rx="8.5" ry="1.286"/>
+								<path d="M15 16H6v1c0 .552-.444 1-1 1-.552 0-1-.444-1-1v-1c-1.105 0-2-.888-2-2v-2h17v2c0 1.105-.89 2-2 2v1c0 .552-.444 1-1 1-.552 0-1-.444-1-1v-1zM1 11c0-.552.45-1 .995-1h17.01a1.001 1.001 0 0 1 0 2H1.995A.995.995 0 0 1 1 11zm3-7a3 3 0 0 1 5.583-1.528L8.6 2.8A2 2 0 0 0 5 4v6H4V4zm4.065 1.509A2.003 2.003 0 0 1 10 3a2 2 0 0 1 1.888 1.34L8.065 5.509z"/>
+							</g>
+						</svg>
+							{{alert.Bathrooms > 1 ? alert.Bathrooms : 1}}+
+					</span>
+					<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<g fill="#999999" fill-rule="evenodd">
+								<ellipse cx="9.643" cy="17.714" opacity=".2" rx="9" ry="1.286"/>
+								<path d="M1.857 8l1.75-4.085C3.825 3.41 4.446 3 4.997 3h9.008c.55 0 1.175.417 1.388.915L17.142 8h.863c.55 0 .995.438.995 1.003V15h-2v1.501C17 17.33 16.334 18 15.5 18c-.828 0-1.5-.665-1.5-1.499V15H5v1.501C5 17.33 4.334 18 3.5 18c-.828 0-1.5-.665-1.5-1.499V15H0V9.003C0 8.449.45 8 .995 8h.862zM3.5 13a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm12 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-.533-5L13.68 5H5.32L4.033 8h10.934z"/>
+							</g>
+						</svg>
+							{{alert.Parking > 1 ? alert.Parking : 1}}+
+					</span>
+					<span class="location">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+							<g fill="#999999" fill-rule="evenodd" transform="translate(4 1)">
+								<ellipse cx="5.786" cy="16.714" opacity=".2" rx="4.5" ry="1.286"/>
+								<path d="M5.786 16.714S0 8.981 0 5.786a5.786 5.786 0 1 1 11.571 0c0 3.195-5.785 10.928-5.785 10.928zm0-7.714a3.214 3.214 0 1 0 0-6.429 3.214 3.214 0 0 0 0 6.429z"/>
+							</g>
+						</svg>
+						{{getDisplaySuburbs(alert.suburbs)}} {{alert.IncludeSurroundingSuburb ? translate.instant('and surrounding suburbs') : ''}}
+					</span>
+				</p>
+				<span class="search-alert" >
+					<ion-icon name="arrow-forward" *ngIf="!isTablet"></ion-icon>
+					<span *ngIf="isTablet">{{ 'Search' | translate }}</span>
+				</span>
+			</button>
+			<button ion-button clear class="edit-alert" (click)="editAlert(alert)">{{ 'Edit' | translate }}</button>
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+<ion-content text-center class="empty-alerts" *ngIf="!isLoading && alerts.length == 0  ">
+	<ion-grid>
+		<ion-row class="alert-half" align-items-center [ngClass]="{'full-height' : isLoggedIn}">
+			<ion-col align-items-center>
+				<img height="147" width="166" src="assets/svg/emptyalert.svg" alt=""/>
+				<p class="empty-alerts-text">
+					<strong>{{ 'NoAlertsMessage' | translate }}</strong><br/>
+					<span *ngIf="isLoggedIn">{{ 'NewAlertMessage' | translate}}</span>
+				</p>
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="alert-half" align-items-center class="login-alerts" *ngIf="!isLoggedIn">
+			<ion-col no-padding>
+				<ion-grid>
+					<ion-row align-items-center>
+						<ion-col col-12 col-sm class="col-left">
+							<h2>{{ 'LoginAlertsTitle' | translate }}</h2>
+							<p>{{ 'LoginAlertsMessage' | translate }}</p>
+						</ion-col>
+						<ion-col col-12 col-sm class="col-right">
+							<ion-buttons center>
+								<button (click)="goLoginPage()" ion-button>
+									{{ 'Sign up or Login' | translate }}
+								</button>
+							</ion-buttons>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

@@ -1,0 +1,68 @@
+
+.range-ios {
+	padding: 0;
+	margin: 0;
+
+	&.range-has-pin {
+		padding-top: 10px;;
+	}
+
+	.label-ios[range-left] {
+		margin-right: 25px;
+	}
+
+	.label-ios[range-right] {
+		margin-left: 15px;
+		margin-right: 5px;
+	}
+
+	.label-ios.range-label {
+		font-size: 1.4rem;
+	}
+
+	.range-knob-handle {
+		width: 35px;
+		height: 24px;
+		top: 19px;
+		position: relative;
+
+		&::after {
+			position: absolute;
+			content: 'MIN';
+			top: 15px;
+			left: 0;
+			font-size: 1.2rem;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.range-knob {
+		border-radius: 2px;
+		box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .05), 0 2px 3px 0 rgba(0, 0, 0, .1), 0 3px 4px 0 rgba(0, 0, 0, .05);
+		border: solid .5px rgba(0, 0, 0, .1);
+		width: 36px;
+		height: 25px;
+		top: 0;
+		left: 0;
+		margin-top: 10px;
+	}
+
+	.range-slider {
+		margin: 0 10px 0 0;
+	}
+
+	.range-bar {
+		height: 3px;
+	}
+}
+
+.range-max {
+	padding: 0 0 10px;
+
+	.range-knob-handle {
+		&::after {
+			content: 'MAX';
+		}
+	}
+}

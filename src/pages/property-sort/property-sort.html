@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-title text-center> {{ 'Sort by' | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button navPop>
+        {{ 'Cancel' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list radio-group class="radio-list">
+    <ion-item>
+      <ion-label>{{ 'Latest listing' | translate }}</ion-label> 
+      <ion-radio tappable item-right [checked]="currOrderBy === 'Latest'" (click)="selectSortOrder('Latest')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'PriceLowHigh' | translate }}</ion-label>
+      <ion-radio tappable item-right [checked]="currOrderBy === 'PriceAsc'" (click)="selectSortOrder('PriceAsc')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'PriceHighLow' | translate }}</ion-label>
+      <ion-radio tappable item-right [checked]="currOrderBy === 'PriceDesc'" (click)="selectSortOrder('PriceDesc')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'SuburbAZ' | translate }}</ion-label>
+      <ion-radio tappable item-right [checked]="currOrderBy === 'SuburbAsc'" (click)="selectSortOrder('SuburbAsc')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'SuburbZA' | translate }}</ion-label>
+      <ion-radio tappable item-right [checked]="currOrderBy === 'SuburbDesc'" (click)="selectSortOrder('SuburbDesc')"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'Upcoming auctions' | translate }}</ion-label>
+      <ion-radio tappable item-right [checked]="currOrderBy === 'Auction'" (click)="selectSortOrder('Auction')"></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-content>

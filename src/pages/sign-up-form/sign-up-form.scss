@@ -1,0 +1,70 @@
+page-sign-up-form {
+
+	ion-img,
+	ion-img img {
+		height: 53px;
+		width: 167px;
+	}
+
+	.card-ios {
+		border-radius: 2px;
+		padding-top: 10px;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.card-content-ios {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.item-checkbox.item-ios {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 0;
+
+		.checkbox-ios {
+			padding: 0;
+			margin: 0 10px 0 0;
+			align-self: flex-start;
+		}
+
+		.item-cover {
+			padding: 0;
+		}
+
+		.label-ios {
+			font-size: 1.4rem;
+			color: $warm-grey;
+			margin-top: 0;
+		}
+	}
+
+	.item-ios {
+		padding-left: 10px;
+	}
+
+	.item-input,
+	.item-select {
+		ion-label {
+			width: 80px;
+			font-size: 1.5rem;
+		}
+	}
+}
+
+@media (min-width: $screen-sm) {
+	page-sign-up-form {
+		.card-content-ios {
+			padding: 0 60px 30px;
+		}
+
+		ion-img,
+		ion-img img {
+			height: 64px;
+			width: 201px;
+		}
+	}
+
+}

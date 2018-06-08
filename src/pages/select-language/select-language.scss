@@ -1,0 +1,48 @@
+page-select-language {
+	.content {
+		background:
+			radial-gradient(circle at 100% 100%, #1396ee, #0f76bb),
+ 			radial-gradient(circle at 100% 100%, #1396ee, #0f76bb);
+	}
+
+	ion-img {
+		margin: 0 auto 50px;
+		display: block;
+	}
+
+	ion-img,
+	ion-img img {
+		width: 195px;
+		height: 62px;
+	}
+
+	ion-buttons {
+		width: 280px;
+		margin: 0 auto;
+	}
+
+	.button-ios {
+		width: 190px;
+		margin-bottom: 15px;
+		height: 4.4rem;
+	}
+
+	ion-grid,
+	ion-row {
+		height: 100%;
+	}
+}
+
+@media (min-width: $screen-sm) {
+
+	page-select-language {
+
+		ion-img,
+		ion-img img {
+			width: 300px;
+			height: 96px;
+
+		}
+	}
+}
+

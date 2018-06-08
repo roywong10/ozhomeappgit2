@@ -1,0 +1,73 @@
+<ion-header>
+	<ion-navbar>
+		<ion-buttons left aria-expanded="">
+			<button ion-button navPop>
+				<ion-icon name="arrow-back"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title>{{'My Account' | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<form [formGroup]="editProfileForm" (submit)="onSubmit()" *ngIf="editProfileForm">
+		<ion-grid no-padding>
+			<ion-row align-items-top no-padding>
+				<ion-col col-12>
+					<ion-list no-margin>
+						<ion-item>
+							<ion-label>{{'Email' | translate}}</ion-label>
+							<ion-input type="text" formControlName="email" disabled></ion-input>
+						</ion-item>
+						<ion-item *ngIf="!editProfileForm.controls.email.valid && hasSubmitted" class="alert alert-danger">Please enter an email.</ion-item>
+						<ion-item>
+							<ion-label>{{'First Name' | translate}}</ion-label>
+							<ion-input type="text" formControlName="firstName" name="firstName" placeholder="John"></ion-input>
+						</ion-item>
+						<ion-item *ngIf="!editProfileForm.controls.firstName.valid && hasSubmitted" class="alert alert-danger">{{'FirstNameReqMsg' | translate}}</ion-item>
+						<ion-item>
+							<ion-label>{{'Last Name' | translate}}</ion-label>
+							<ion-input type="text" formControlName="lastName" placeholder="Smith"></ion-input>
+						</ion-item>
+						<ion-item *ngIf="!editProfileForm.controls.lastName.valid && hasSubmitted" class="alert alert-danger">{{'LastNameReqMsg' | translate}}</ion-item>
+						<ion-item>
+							<ion-label>{{'State' | translate}}</ion-label>
+							<ion-select interface="popover" formControlName="state" [placeholder]="'Please select' | translate">
+								<ion-option value="ACT">ACT</ion-option>
+								<ion-option value="NSW">NSW</ion-option>
+								<ion-option value="NT">NT</ion-option>
+								<ion-option value="QLD">QLD</ion-option>
+								<ion-option value="SA">SA</ion-option>
+								<ion-option value="TAS">TAS</ion-option>
+								<ion-option value="VIC">VIC</ion-option>
+								<ion-option value="WA">WA</ion-option>
+							</ion-select>
+						</ion-item>
+						<ion-item>
+							<ion-label>{{'Postcode' | translate}}</ion-label>
+							<ion-input type="text" formControlName="postcode" placeholder="3000" minlength="4" maxlength="4"></ion-input>
+						</ion-item>
+						<ion-item *ngIf="!editProfileForm.controls.postcode.valid && hasSubmitted" class="alert alert-danger">{{'PostcodeReqMsg' | translate}}</ion-item>
+
+						<ion-item>
+							<ion-label>{{'Password' | translate}}</ion-label>
+							<ion-input type="password" [placeholder]="'PasswordPlaceholder' | translate" value="password" disabled></ion-input>
+						</ion-item>
+						<a clear *ngIf="!userProfile.isSocialLogin" class="change-password" (click)="goToChangePwd()">{{'Change' | translate}}<ion-icon name="arrow-forward"></ion-icon></a>
+
+					</ion-list>
+					<p text-center center><button ion-button margin-top block type="submit" [disabled]="!editProfileForm.dirty">{{'Save changes' | translate}}</button></p>
+
+				</ion-col>
+			</ion-row>
+			<!--
+		The button has been moved up to sit under the form, otherwise when the keyboard is on, it overlaps the form - easiest fix atm.
+		<ion-row class="col-bottom">
+			<ion-col col-12 text-center>
+
+			</ion-col>
+		</ion-row>-->
+		</ion-grid>
+	</form>
+</ion-content>

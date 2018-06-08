@@ -1,0 +1,146 @@
+page-my-account {
+	ion-navbar {
+		.content {
+			background: transparent;
+		}
+
+		img {
+			margin-top: 3px;
+		}
+	}
+}
+
+.logout-link {
+	padding: 0 5px;
+	height: 32px;
+}
+
+.myaccount-list {
+
+	.item-block {
+		padding-left: 0;
+	}
+
+	ion-item-group .item-inner {
+		padding-left: 10px;
+		padding-right: 0 !important;
+	}
+
+	.label-ios {
+		font-size: 1.6rem;
+	}
+}
+
+.language-selector {
+	background: $white;
+}
+
+.unlock,
+.sync {
+	padding: 0 10px 10px;
+
+	.item-ios {
+		border: 1px solid $grey-border;
+		padding-left: 14px;
+		border-radius: 2px;
+
+		.item-inner:not([detail-none]) {
+			border: 0;
+			background-position: right 7px center;
+		}
+	}
+
+	[item-left] {
+		margin-right: 14px;
+	}
+
+	.icon-unlock,
+	.icon-sync {
+		color: map-get($colors, primary);
+		font-size: 1.3em;
+	}
+
+	.icon-sync  {
+		margin-top: 6px;
+	}
+
+	.label-ios {
+		margin: 6px 0;
+	}
+
+	p {
+		color: $text-color;
+	}
+}
+
+.sync {
+	margin-top: 10px;
+}
+
+.btn-editprofile {
+	.label-ios {
+		padding-left: 10px;
+	}
+}
+
+.btn-feedback {
+	.label-ios {
+		margin: 0;
+	}
+
+	a {
+		color: $text-color;
+		text-decoration: none;
+		display: block;
+		padding: 11px 8px 11px 0;
+	}
+}
+
+@media (min-width: $screen-sm) {
+
+	page-my-account {
+		.scroll-content {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.unlock {
+		padding: 0 0 10px;
+	}
+
+	.btn-editprofile {
+		border-radius: 2px 2px 0 0;
+		border: 1px solid $grey-border;
+		border-bottom: 0;
+	}
+
+	.language-selector {
+		border: 1px solid $grey-border;
+		border-radius: 2px;
+	}
+
+	.btn-editprofile + .language-selector  {
+		border-top: 0;
+		border-radius: 0;
+	}
+
+	.btn-feedback {
+		border-radius: 2px 2px 0 0;
+		border: 1px solid $grey-border;
+		border-bottom: 0;
+	}
+
+	.about-group {
+		.item-ios {
+			border-left: 1px solid $grey-border;
+			border-right: 1px solid $grey-border;
+		}
+	}
+
+	.btn-conditions {
+		border-radius: 0 0 2px 2px;
+		border: 1px solid $grey-border;
+		border-top: 0;
+	}
+}

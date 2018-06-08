@@ -1,0 +1,30 @@
+page-shortlist {
+
+}
+
+.empty-shortlist {
+	ion-grid,
+	ion-row {
+		height: 100%;
+	}
+}
+
+.empty-shortlist-text {
+	font-size: 1.8rem;
+	color: rgba(#222, .3);
+	font-weight: bold;
+	line-height: 3.5rem;
+
+	.icon-shortlist {
+		color: $grey-border;
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		background: rgba(#000, .2);
+
+		&::before {
+			font-size: 1.6rem;
+			line-height: 28px;
+		}
+	}
+}

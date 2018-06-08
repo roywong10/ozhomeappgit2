@@ -1,0 +1,60 @@
+page-sign-up {
+
+	ion-img {
+		margin-bottom: 50px;
+		width: 195px;
+		height: 62px;
+
+		img {
+			width: 195px;
+			height: 62px;
+		}
+	}
+
+	ion-grid,
+	ion-row {
+		height: 100%;
+	}
+
+}
+
+.log-in {
+	color: $light-blue;
+	font-weight: bold;
+	font-size: 1.6rem;
+	margin-top: 50px;
+
+	a {
+		color: $white;
+	}
+}
+
+
+
+.btn-facebook {
+	background: $fb-blue;
+
+	&.activated {
+		background: darken($fb-blue, 3%);
+	}
+}
+
+.btn-wechat {
+	background: $green;
+
+	&.activated {
+		background: darken($green, 3%);
+	}
+}
+
+
+@media (min-width: $screen-sm) {
+
+	page-sign-up {
+		ion-img,
+		ion-img img {
+			width: 300px;
+			height: 96px;
+		}
+	}
+}

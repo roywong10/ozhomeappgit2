@@ -1,0 +1,71 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>
+			<img width="90" height="29" src="./assets/svg/logo.svg" alt="Ozhome Logo" />
+		</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<div class="container">
+
+		<ion-list class="myaccount-list">
+			<ion-grid no-padding>
+				<ion-row align-items-end>
+					<ion-col col-6>
+						<ion-label class="spaced-label" left translate>{{ 'My Account' | translate }}</ion-label>
+					</ion-col>
+					<ion-col col-6 text-right>
+						<button ion-button clear class="logout-link" color="primary" right *ngIf="isLoggedIn" (click)="logOut()">{{'Log out' | translate}}</button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+
+			<button ion-item *ngIf="isLoggedIn" class="btn-editprofile" (click)="editProfile()">{{userAccount.email}}</button>
+
+			<div *ngIf="!isLoggedIn" class="unlock">
+				<button ion-item block text-wrap (click)="goSignupPage()">
+					<div item-left>
+						<custom-icon set="ozhome" name="unlock" ></custom-icon>
+					</div>
+					<p>{{ 'MyAccountNotLoggedInMessage' | translate }}</p>
+				</button>
+			</div>
+
+			<ion-item-group class="language-selector">
+				<ion-grid no-padding>
+					<ion-row>
+						<ion-col col-4>
+							<ion-item>
+								<ion-label>{{ 'Language' | translate }}:</ion-label>
+							</ion-item>
+						</ion-col>
+						<ion-col col-8>
+							<ion-item-group radio-group>
+								<ion-item>
+									<ion-label>English</ion-label>
+									<ion-radio tappable [checked]="language==='en'" value="en" (click)="changeLanguage('en')"></ion-radio>
+								</ion-item>
+								<ion-item>
+									<ion-label>中文</ion-label>
+									<ion-radio tappable [checked]="language==='zh'" value="zh" (click)="changeLanguage('zh')"></ion-radio>
+								</ion-item>
+							</ion-item-group>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-item-group>
+			<ion-item-group class="about-group" margin-top>
+				<ion-label class="spaced-label" left>{{ 'About' | translate }}</ion-label>
+				<ion-item class="btn-feedback">
+					<a href="mailto:{{feedbackEmail}}?subject={{feedbackSubject}}">{{ 'Feedback' | translate }}</a>
+				</ion-item>
+				<button ion-item (click)="viewPrivacyPolicy()">{{ 'Privacy Policy' | translate }}</button>
+				<button ion-item (click)="viewTermsConditions()" class="btn-conditions">{{ 'Conditions of Use' | translate }}</button>
+			</ion-item-group>
+		</ion-list>
+	</div>
+</ion-content>

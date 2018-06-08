@@ -1,0 +1,27 @@
+property-status-label {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 10;
+	transform: translate3d(0, 0, 0);
+
+	.label {
+		color: $white;
+		display: inline-block;
+		padding: 1px 6px;
+		font-size: .9em;
+		border-radius: 2px;
+	}
+}
+
+.label-new {
+	background: map-get($colors, primary);
+}
+
+.label-sold {
+	background: $red;
+}
+
+.label-under-contract {
+	background: $black;
+}

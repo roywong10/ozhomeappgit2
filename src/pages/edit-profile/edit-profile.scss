@@ -1,0 +1,58 @@
+page-edit-profile,
+page-change-password {
+	.item-input,
+	.item-select {
+		ion-label {
+			width: 80px;
+			font-size: 1.5rem;
+		}
+	}
+
+	.item-ios {
+		padding-left: 0;
+	}
+
+	.item-inner {
+		padding-left: 10px;
+	}
+
+	.button-ios[type='submit'] {
+		width: 190px;
+		display: inline-block;
+		margin-bottom: 50px;
+	}
+
+	form,
+	.grid {
+		height: 100%;
+	}
+
+	.grid {
+		justify-content: space-between;
+	}
+
+	ion-list {
+		position: relative;
+	}
+
+	.change-password {
+		position: absolute;
+		bottom: 0;
+		right: 10px;
+		z-index: 20;
+		color: $warm-grey;
+		margin: 0;
+		font-size: 1.4rem;
+		height: 44px;
+		line-height: 44px;
+
+		ion-icon {
+			margin-left: 7px;
+			color: $grey-border;
+			font-size: 1.4em;
+			position: relative;
+			top: 3px;
+		}
+	}
+
+}

@@ -1,0 +1,22 @@
+<ion-card *ngIf="property.PropertyID" >
+
+      <div class="left">
+        <img class="thumb" [src]="property.Images[0]"/>
+		    <property-status-label [property]="property"></property-status-label>
+        <!--<img class="realestate" [src]="property.RealestateOfficeLogo" [alt]="property.address">-->
+      </div>
+      <div class="right">
+        <strong>{{property.Price}}</strong>
+		    <shortlist-component [property]='property'></shortlist-component>
+        <ul class="amenities" *ngIf="property.PropertyType != 'Land'">
+          <li><custom-icon set="ozhome" name="bed"></custom-icon> {{property.Bedrooms}}</li>
+          <li><custom-icon set="ozhome" name="bathroom"></custom-icon> {{property.Bathrooms}}</li>
+          <li><custom-icon set="ozhome" name="car"></custom-icon> {{property.Parking}}</li>
+      	</ul>
+        <ul class="amenities" *ngIf="property.PropertyType === 'Land'">
+          <li>Land: {{property.LandSize}} <span [innerHTML]="property.LandType"></span></li>
+      	</ul>
+        <p>{{property.Address}}</p>
+      </div>
+
+ </ion-card>

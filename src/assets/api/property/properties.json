@@ -1,0 +1,228 @@
+{
+    "totalResults":7,
+    "properties":[
+        {
+            "propertyId": "21509",
+            "price": "$685,000 - $750,000",
+            "heading": "Easy Enjoyable Relaxed Living",
+            "address": "20 Patterdale Court CROYDON HILLS, VIC",
+            "bedrooms": 3,
+            "bathrooms": 2,
+            "parking": 2,
+            "images": ["http://www.ozhome.com.au/database/images/extra_residential_132435.jpg",
+            "http://www.ozhome.com.au/database/images/extra_residential_132436.jpg",
+            "http://www.ozhome.com.au/database/images/extra_residential_132442.jpg"],
+            "realEstateOfficeText": "Brent Peters",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_27.gif",
+            "isSold": false,
+            "isNew": true,
+            "isUnderContract": false,
+            "latitude": -37.7682537,
+            "longitude": 145.2669753
+        },
+        {
+            "propertyId": "21519",
+            "price": "$780,000 - $850,000",
+            "address": "2 Greenridge Court CHIRNSIDE PARK, VIC 3116",
+            "bedrooms": 4,
+            "bathrooms": 2,
+            "parking": 3,
+            "images" :["http://www.ozhome.com.au/database/images/extra_residential_137286.jpg",
+            "http://www.ozhome.com.au/database/images/extra_residential_137287.jpg",
+            "http://www.ozhome.com.au/database/images/residential_137285.jpg"],
+            "realEstateOfficeText": "Brent Peters",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_27.gif",
+            "isSold": false,
+            "isNew": true,
+            "isUnderContract": false,
+            "latitude": -37.7600867,
+            "longitude": 145.3007483,
+            "state":"Victoria",
+            "suburb":"Chirnside Park",
+            "street": "2 Greenridge Court",
+            "saleType": "Auction",
+            "inspections" : [
+                {
+                    "startDateTime": "2017-05-06T12:00:00.33Z",
+                    "endDatetime": "2017-05-06T12:30:00.33Z"
+                },
+                {
+                    "startDateTime": "2017-05-13T15:00:00.00Z",
+                    "endDatetime": "2017-05-13T15:30:00.00Z"
+                },
+                {
+                    "startDateTime": "2017-05-24T11:00:00.00Z",
+                    "endDatetime": "2017-05-24T11:30:00.00Z"
+                }
+            ],
+            "auctionTime":"2017-06-04T17:30:00.00Z",
+            "fullDescription":"<p>Auction - Saturday 27th May @ 2:30pm (Unless Sold Prior)<br /><br />This is a family home which just keeps on giving, seeing is believing with so much to like, it ticks all the right boxes for a terrific lifestyle.<br /><br />- Providing three separate entertaining zones, supreme comfort, wonderful alfresco dining, pool and spa relaxation plus fabulous views.<br /><br />- The original owners can testify to the enjoyment that this property has given the entire family over the years.<br /><br />- Surprisingly spacious, light filled interior courtesy of the positioning of the home where morning sun infuses the front rooms then permeates throughout. <br /><br />-The substantial floor plan comprises entry foyer, for more formal occasions family and friends comfortably gather in the inviting living-dining room. <br /><br />-The central hub for parents and children is in the open plan meals and family room adjoining the well equipped kitchen positioned to take in the panoramic views.<br /><br />- This informal zone opens onto the Northerly large outdoor undercover deck with its elevated vantage point benefits from an expansive outlook towards Kinglake across to the Toolangi State Forest. <br /><br />-A large leisure room is situated next to the informal zone via double doors.<br /><br />- Offering 4 robed bedrooms highlighted by the main bedroom with a deluxe ensuite, a contemporary bathroom services the remaining bedrooms.<br /><br />- Summer fun focuses around the pool and separate Jacuzzi spa along with the child friendly tropical inspired back garden.<br /><br />- 3 car auto accommodation with drive through access is ideal for additional vehicles or a boat plus there is a huge workshop able to easily fit a trailer, kayak and so much more which will also be appreciated by the tradesman or handy man. <br /><br />- Pleasing appointments include gas ducted heating, reverse cycle split system air conditioner, ceiling fans, security system, brand new wall oven and a water tank.<br /><br />- Located within the desirable Chirnside Village surrounded by quality homes, few minutes walk to Oxley College, close to Chirnside Park shopping centre and near Chirnside Park Primary. Easy commute to Croydon station, Eastland shopping centre and Eastlink network.</p>",
+            "heading":"Prepare To Be Surprised",
+            "floorPlans":[
+                "http://www.ozhome.com.au/database/images/th_residential_floor_4008.jpg",
+                "http://www.ozhome.com.au/database/images/th_residential_floor_4009.jpg"
+            ],
+            "propertyType": "House",
+            "realEstateName":"Hoskins Real Estate",
+            "realEstateAddress":"67 Mitcham Road, Donvale, VIC, 3111",
+            "realEstateAgents":[
+                {
+                    "agentName":"Brent Peters",
+                    "agentEmail":"BrentPeters@hoskins.com.au",
+                    "agentContactNumber":"0412 855 810",
+                    "agentContactNumberType":"mobile",
+                    "agentImage":"http://www.ozhome.com.au/database/images/salesperson_151.jpg"
+                },
+                {
+                    "agentName":"Kathy Purcell",
+                    "agentEmail":"KathyPurcell@hoskins.com.au",
+                    "agentContactNumber":"0411 619 336",
+                    "agentContactNumberType":"mobile",
+                    "agentImage":"http://www.ozhome.com.au/database/images/salesperson_1567.jpg"
+                }
+            ],
+            "relatedProperties":[
+                    {
+                    "propertyId": "21509",
+                    "price": "$685,000 - $750,000",
+                    "heading": "Easy Enjoyable Relaxed Living",
+                    "address": "20 Patterdale Court CROYDON HILLS, VIC",
+                    "bedrooms": 3,
+                    "bathrooms": 2,
+                    "parking": 2,
+                    "images": ["http://www.ozhome.com.au/database/images/residential_127707.jpg",
+                    "http://www.ozhome.com.au/database/images/extra_residential_127708.jpg",
+                    "http://www.ozhome.com.au/database/images/extra_residential_127709.jpg"],
+                    "realEstateOfficeText": "Brent Peters",
+                    "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_27.gif",
+                    "isSold": false,
+                    "isNew": true,
+                    "isUnderContract": false,
+                    "latitude": -37.7682537,
+                    "longitude": 145.2669753
+                },
+                {
+                    "propertyId": "21506",
+                    "price": "$690,000 - $750,000",
+                    "heading": "Picture Perfect For Families",
+                    "address": "78 Billanook Way CHIRNSIDE PARK, VIC 3116",
+                    "bedrooms": 3,
+                    "bathrooms": 2,
+                    "parking": 0,
+                    "images" :["http://www.ozhome.com.au/database/images/residential_127906.jpg"],
+                    "realEstateOfficeText": "Kathy Purcell",
+                    "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_27.gif",
+                    "isSold": false,
+                    "isNew": true,
+                    "isUnderContract": false,
+                    "latitude": -37.7598257,
+                    "longitude": 145.2978233
+                },
+                {
+                    "propertyId": "21505",
+                    "price": "$800,000 - $880,000",
+                    "heading": "Quality & Serenity",
+                    "address": "14 Landau Drive WARRANWOOD, VIC 3134",
+                    "bedrooms": 4,
+                    "bathrooms": 2,
+                    "parking": 2,
+                    "images" :["http://www.ozhome.com.au/database/images/residential_127836.jpg"],
+                    "realEstateOfficeText": "Leyden Burdett",
+                    "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_48.gif",
+                    "isSold": false,
+                    "isNew": true,
+                    "isUnderContract": false,
+                    "latitude": -37.7693837,
+                    "longitude": 145.2382573
+                }
+            ]
+
+
+        },
+        {
+            "propertyId": "21506",
+            "price": "$690,000 - $750,000",
+            "heading": "Picture Perfect For Families",
+            "address": "78 Billanook Way CHIRNSIDE PARK, VIC 3116",
+            "bedrooms": 3,
+            "bathrooms": 2,
+            "parking": 0,
+            "images" :["http://www.ozhome.com.au/database/images/residential_127906.jpg"],
+            "realEstateOfficeText": "Kathy Purcell",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_27.gif",
+            "isSold": false,
+            "isNew": true,
+            "isUnderContract": false,
+            "latitude": -37.7598257,
+            "longitude": 145.2978233
+        },
+        {
+            "propertyId": "21505",
+            "price": "$800,000 - $880,000",
+            "heading": "Quality & Serenity",
+            "address": "14 Landau Drive WARRANWOOD, VIC 3134",
+            "bedrooms": 4,
+            "bathrooms": 2,
+            "parking": 2,
+            "images" :["http://www.ozhome.com.au/database/images/residential_127836.jpg"],
+            "realEstateOfficeText": "Leyden Burdett",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_48.gif",
+            "isSold": false,
+            "isNew": true,
+            "isUnderContract": false,
+            "latitude": -37.7693837,
+            "longitude": 145.2382573
+        },
+        {
+            "propertyId": "21504",
+            "price": "Contact Agent",
+            "heading":"Cutting-Edge Style Meets Suburban Convenience",
+            "address": "302 Colchester Road BAYSWATER NORTH, VIC 3153",
+            "bedrooms": 4,
+            "bathrooms": 2,
+            "parking": 4,
+            "images" :["http://www.ozhome.com.au/database/images/residential_124060.jpg"],
+            "realEstateOfficeText": "David Blundell",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_48.gif",
+            "isSold": false,
+            "isNew": true,
+            "isUnderContract": false,
+            "latitude": -37.830075,
+            "longitude": 145.302442
+        },
+        {
+            "propertyId": "21475",
+            "price": "AUCTION (unless sold prior)",
+            "heading":"READY, SET, GO on 741.5sqmâ?¦.!",
+            "address": "6 Sheppard Drive SCORESBY, VIC 3179",
+            "bedrooms": 3,
+            "bathrooms": 1,
+            "parking": 1,
+            "images" :["http://www.ozhome.com.au/database/images/residential_123509.jpg"],
+            "realEstateOfficeText": "Brendan Murphy",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_5.png",
+            "isSold": false,
+            "isNew": true,
+            "isUnderContract": true,
+            "latitude": -37.893085,
+            "longitude": 145.231890
+        },
+        {
+            "propertyId": "21471",
+            "price": "AUCTION (unless sold prior)",
+            "heading": "Gorgeous family living in prestigious Lakewood Estate.",
+            "address": "21 Peppermint Grove Knoxfield, VIC 3180",
+            "bedrooms": 4,
+            "bathrooms": 2,
+            "parking": 2,
+            "images" :["http://www.ozhome.com.au/database/images/residential_124038.jpg"],
+            "realEstateOfficeText": "Daniel Cripps",
+            "realEstateOfficeLogo": "http://www.ozhome.com.au/database/images/agent_5.png",
+            "isSold": true,
+            "isNew": false,
+            "isUnderContract": false,
+            "latitude": -37.878516,
+            "longitude": 145.255395
+        }
+    ]
+}

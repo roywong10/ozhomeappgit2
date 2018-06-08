@@ -1,0 +1,36 @@
+<ion-header>
+
+	<ion-navbar>
+			<ion-buttons left *ngIf="!appFirstTime">
+			<button ion-button (click)="skipLocationAccessUp(false)">
+				{{'Back' | translate}}
+		</button>
+			</ion-buttons>
+		<ion-buttons right *ngIf="appFirstTime">
+			<button ion-button (click)="skipLocationAccessUp(false)">
+				{{'Skip This' | translate}}
+		</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content  padding text-center>
+
+	<ion-grid>
+		<ion-row align-items-center>
+			<ion-col align-items-center>
+				<ion-img height="142" width="168" src="./assets/svg/locservice.svg" alt="Map pin"></ion-img>
+				<p [innerHTML]="'ReqLocationTitle' | translate"></p>
+				<p class="note" [innerHTML]="'ReqLocationMsg' | translate"></p>
+			</ion-col>
+		</ion-row>
+		<ion-row align-items-end class="button-row">
+			<ion-col align-items-center>
+				<button ion-button block (click)="requestAccess()" class="btn-login">{{'ReqLocationButton' | translate}}</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+
+</ion-content>

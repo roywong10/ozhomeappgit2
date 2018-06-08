@@ -1,0 +1,299 @@
+<ion-header>
+  <ion-navbar class="filter-nav">
+
+    <ion-buttons left start>
+      <button ion-button icon-only>
+        <i class="icon icon-search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+            <g fill="#F7F8F9" fill-rule="evenodd">
+              <path d="M10.096 10.303l.707-.707 5.182 4.03c.653.508.711 1.39.122 1.98-.586.586-1.475.53-1.98-.12l-4.03-5.183z" opacity=".6"/>
+              <path d="M6 12A6 6 0 1 1 6 0a6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            </g>
+          </svg>
+        </i>
+      </button>
+    </ion-buttons>
+
+    <ion-searchbar  (focusin)="onSearchBoxFocusEvent($event)" (focusout)="onSearchBoxFocusEvent($event)" (ionInput)="getSuburbItems($event)"
+      (tap)="onTapSearchBox($event)" [(ngModel)]="suburbSearchTerm" autocorrect="off" [placeholder]="'SuburbPlaceholder' | translate" #searchBar>
+    </ion-searchbar>
+
+    <ion-buttons right end *ngIf="showSuburbFilters && !isTablet">
+      <button ion-button clear (click)="cancelGetSuburbItems($event)">
+        {{ 'Done' | translate }}
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right end *ngIf="!showSuburbFilters || isTablet">
+      <button ion-button navPop clear>
+         {{ 'Cancel' | translate }}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Suburbs -->
+  <div class="tab-filters-left">
+
+    <rl-tag-input
+      class="tag-list"
+      [hidden]="items && !items.length == 0"
+      [(ngModel)]="tags"
+      placeholder="Testing placeholder"
+      (removeTag)="onRemoveSuburbTag($event)"
+    ></rl-tag-input>
+
+    <div [hidden]="!showSuburbFilters && !isTablet">
+      <ion-list *ngIf="showSuburbResults" class="suburb-list">
+        <ion-item *ngFor="let item of items">
+          <ion-label>{{ item.SearchResult }}</ion-label>
+          <ion-checkbox item-right [(ngModel)]="item.checked" (ionChange)="toggleSuburb($event,item)"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+      <ion-label no-margin padding-bottom text-center *ngIf="showSuburbResults && items.length == 0">{{ 'NoSuburbsMessage' | translate }}</ion-label>
+
+      <ion-list class="suburb-list" *ngIf="showPreviousSearchList">
+      <ion-label class="spaced-label">	  {{ 'Recent Searches' | translate }}</ion-label>
+        <ion-item *ngFor="let item of previouslySearchedSuburbs">
+          <ion-label>{{ item.SearchResult }}</ion-label>
+          <ion-checkbox item-right [(ngModel)]="item.checked" (ionChange)="toggleSuburb($event,item)"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+    </div>
+  </div>
+
+  <!-- Main filters -->
+  <ion-list class="filters-list" [hidden]="showSuburbFilters && !isTablet">
+    <ion-item class="filter-label alert-name">
+      <i class="icon icon-alertname" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <g fill="#F7941F" fill-rule="evenodd">
+                <ellipse cx="9.643" cy="17.714" opacity=".2" rx="10" ry="1.286"/>
+                <text font-family="NunitoSans-Bold, Nunito Sans" font-size="21" font-weight="bold">
+                    <tspan x="2" y="18">A</tspan>
+                </text>
+            </g>
+        </svg>
+      </i>
+      <ion-label>{{'Alert name' | translate}}:</ion-label>
+      <ion-input type="text" [placeholder]="'AlertNamePlaceholder' | translate" [(ngModel)]="alert.AlertName" [class.invalid]="alert.AlertName == '' && hasSubmitted" maxlength="25"></ion-input>
+    </ion-item>
+
+    <ion-item  class="filter-label">
+      <i class="icon icon-sale" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <g fill="#F7941F" fill-rule="evenodd">
+            <path d="M15 8h1.005a1 1 0 0 1 .995.997v6.006c0 .55-.456.997-.995.997h-8.01A1 1 0 0 1 7 15.003V8.997c0-.55.456-.997.995-.997H9V6h1v2h4V6h1v2zM5 4h13.007c.548 0 .993.444.993 1 0 .552-.445 1-.993 1H5v14H3V6H1.993A.994.994 0 0 1 1 5c0-.552.445-1 .993-1H3V1.995a1.001 1.001 0 0 1 2 0V4z"/>
+            <ellipse cx="12.143" cy="19.214" opacity=".2" rx="5.5" ry="1"/>
+          </g>
+        </svg>
+      </i>
+      <ion-label>{{ 'Search type' | translate }}:</ion-label>
+      <ion-segment [(ngModel)]="showMe" color="secondary" item-right class="text-toggle show-me-filter">
+        <ion-segment-button value="sale">
+           {{ 'For Sale' | translate }}
+        </ion-segment-button>
+        <ion-segment-button value="sold">
+           {{ 'Sold' | translate }}
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+
+    <ion-item tappable (click)="toggleDetails(priceRangeFilter)" class="filter-label" [ngClass]="{ expanded: priceRangeFilter.showDetails}">
+      <i class="icon icon-price" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <g fill="#F7941F" fill-rule="evenodd">
+            <ellipse cx="9.786" cy="18.714" opacity=".2" rx="6.5" ry="1.286"/>
+            <path d="M1.5 12.522a.997.997 0 0 1 .002-1.41L10.613 2l7.636 7.636-9.111 9.11a1 1 0 0 1-1.411.002L1.5 12.522zM17.159 2c.637 0 1.09.455 1.09 1.09v6.546L10.614 2h6.545zM9.502 13.464c.524 0 .976-.191 1.358-.573.32-.32.496-.654.527-1a2.03 2.03 0 0 0-.152-.987 9.197 9.197 0 0 0-.58-1.103c-.184-.306-.32-.552-.41-.735a1.305 1.305 0 0 1-.142-.538.606.606 0 0 1 .191-.46.74.74 0 0 1 .683-.222c.261.045.52.194.774.449.457.457.757 1.082.898 1.874l1.139-.432a2.61 2.61 0 0 0-.244-.93 4.927 4.927 0 0 0-.577-.965l.771-.77-.849-.849-.791.792c-.514-.363-1.042-.544-1.584-.544-.543 0-1.002.188-1.38.565-.325.325-.504.667-.537 1.026-.033.358.017.697.149 1.018.132.32.33.697.594 1.131.179.302.31.54.396.714.085.175.132.342.141.502.01.16-.045.3-.162.418a.728.728 0 0 1-.68.219c-.259-.047-.532-.215-.82-.502-.537-.538-.876-1.202-1.018-1.994l-1.138.431c.042.344.15.696.322 1.057.172.36.4.706.682 1.036l-.764.764.849.848.792-.792c.518.368 1.04.552 1.562.552zM16 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+          </g>
+        </svg>
+      </i>
+      <ion-icon color="secondary" item-right [name]="priceRangeFilter.icon">{{getPriceRangeStr()}}</ion-icon>
+      <ion-label>{{ 'Price Range' | translate }}</ion-label>
+    </ion-item>
+
+    <ion-item class="toggle-slide price-range" [ngClass]="{ collapsed: !priceRangeFilter.showDetails}">
+
+      <ion-range [(ngModel)]="alert.PriceFrom" step="50000" min="0" max="5000000" pin="true">
+        <ion-label class="range-label" range-left>{{ 'Any' | translate }}</ion-label>
+        <ion-label class="range-label" range-right>$5m</ion-label>
+      </ion-range>
+
+      <ion-range [(ngModel)]="alert.PriceTo" step="50000" min="0" max="5000000" pin="true" class="range-max">
+        <ion-label class="range-label" range-left>{{ 'Any'| translate }}</ion-label>
+        <ion-label class="range-label" range-right>$5m+</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item tappable class="filter-label" (click)="toggleDetails(propertyTypeFilter)" [ngClass]="{ expanded: propertyTypeFilter.showDetails}">
+      <i class="icon icon-property" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <path fill="#F7941F" fill-rule="evenodd" d="M14 5.111L10 2 1 9h18l-2-1.556V2h-3v3.111zM1 9h18v10H1V9zm3 2v8h4v-8H4zm7 0v2h2v-2h-2zm3 0v2h2v-2h-2zm0 3v2h2v-2h-2zm-3 0v2h2v-2h-2z"/>
+        </svg>
+      </i>
+      <ion-icon color="secondary" item-right [name]="propertyTypeFilter.icon">{{propertyTypeDescripion }}</ion-icon>
+      <ion-label>{{ 'Property Type' | translate }}</ion-label>
+    </ion-item>
+    <div class="toggle-slide" [ngClass]="{ collapsed: !propertyTypeFilter.showDetails }">
+      <ion-list>
+        <ion-item ion-content>
+          <ion-label>{{ 'House' | translate }}</ion-label>
+          <ion-checkbox item-right [checked]="alert.propertyTypeList.indexOf('House') > -1" (ionChange)="selectPropertyType($event,'House')"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'Apartment' | translate }}</ion-label>
+          <ion-checkbox item-right [checked]="alert.propertyTypeList.indexOf('Apartment') > -1" (ionChange)="selectPropertyType($event,'Apartment')"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'Unit' | translate }}</ion-label>
+          <ion-checkbox item-right [checked]="alert.propertyTypeList.indexOf('Unit') > -1" (ionChange)="selectPropertyType($event,'Unit')"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'Townhouse' | translate }}</ion-label>
+          <ion-checkbox item-right [checked]="alert.propertyTypeList.indexOf('Townhouse') > -1" (ionChange)="selectPropertyType($event,'Townhouse')"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'Land' | translate }}</ion-label>
+          <ion-checkbox item-right [checked]="alert.propertyTypeList.indexOf('Land') > -1" (ionChange)="selectPropertyType($event,'Land')"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <ion-item tappable (click)="toggleDetails(bedroomFilter)" class="filter-label" [ngClass]="{ expanded: bedroomFilter.showDetails}">
+      <i class="icon icon-bed" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <g fill="#F7941F" fill-rule="evenodd">
+            <ellipse cx="9.643" cy="17.714" opacity=".2" rx="10" ry="1.286"/>
+            <path d="M16 16H3v1.01c0 .546-.444.99-1 .99a1 1 0 0 1-1-.99V16H.995A.998.998 0 0 1 0 15.01v-4.02c0-.546.45-.99.995-.99h17.01c.55 0 .995.451.995.99v4.02c0 .546-.45.99-.995.99H18v1.01c0 .546-.444.99-1 .99a1 1 0 0 1-1-.99V16zm0-8a1 1 0 0 0-.99-1h-4.02A.993.993 0 0 0 10 8v1H9V8a1 1 0 0 0-.99-1H3.99A.993.993 0 0 0 3 8v1H1V3h17v6h-2V8z"/>
+          </g>
+        </svg>
+      </i>
+      <ion-icon color="secondary" item-right [name]="bedroomFilter.icon">{{alert.Bedrooms ? alert.Bedrooms + '+' : 'Any' | translate}}</ion-icon>
+      <ion-label>{{ 'Bedrooms' | translate }}</ion-label>
+    </ion-item>
+
+    <ion-item class="toggle-slide bedroom-filter" [ngClass]="{ collapsed: !bedroomFilter.showDetails }">
+      <ion-segment [(ngModel)]="beds" color="secondary" class="text-toggle">
+      <ion-segment-button (click)="alert.Bedrooms = 0" value="0">
+        {{ 'Any' | translate }}
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bedrooms = 1" value="1">
+        1+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bedrooms = 2" value="2">
+        2+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bedrooms = 3" value="3">
+        3+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bedrooms = 4" value="4">
+        4+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bedrooms = 5" value="5">
+        5+
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
+
+    <ion-item tappable class="filter-label" (click)="toggleDetails(bathroomFilter)" [ngClass]="{ expanded: bathroomFilter.showDetails}">
+      <i class="icon icon-bathroom" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <g fill="#F7941F" fill-rule="evenodd">
+            <ellipse cx="10.143" cy="17.714" opacity=".2" rx="8.5" ry="1.286"/>
+            <path d="M15 16H6v1c0 .552-.444 1-1 1-.552 0-1-.444-1-1v-1c-1.105 0-2-.888-2-2v-2h17v2c0 1.105-.89 2-2 2v1c0 .552-.444 1-1 1-.552 0-1-.444-1-1v-1zM1 11c0-.552.45-1 .995-1h17.01a1.001 1.001 0 0 1 0 2H1.995A.995.995 0 0 1 1 11zm3-7a3 3 0 0 1 5.583-1.528L8.6 2.8A2 2 0 0 0 5 4v6H4V4zm4.065 1.509A2.003 2.003 0 0 1 10 3a2 2 0 0 1 1.888 1.34L8.065 5.509z"/>
+          </g>
+        </svg>
+      </i>
+      <ion-icon color="secondary" item-right [name]="bathroomFilter.icon">{{alert.Bathrooms ? alert.Bathrooms + '+' : 'Any' | translate}}</ion-icon>
+      <ion-label>{{ 'Bathrooms' | translate }}</ion-label>
+    </ion-item>
+
+    <ion-item class="toggle-slide bathroom-filter" [ngClass]="{ collapsed: !bathroomFilter.showDetails }">
+      <ion-segment [(ngModel)]="baths" color="secondary" class="text-toggle">
+      <ion-segment-button (click)="alert.Bathrooms = 0" value="0">
+        {{ 'Any' | translate }}
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bathrooms = 1" value="1">
+        1+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bathrooms = 2" value="2">
+        2+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bathrooms = 3" value="3">
+        3+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bathrooms = 4" value="4">
+        4+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Bathrooms = 5" value="5">
+          5+
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+
+    <ion-item tappable  class="filter-label" (click)="toggleDetails(carparkFilter)" [ngClass]="{ expanded: carparkFilter.showDetails}">
+      <i class="icon icon-car" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <g fill="#F7941F" fill-rule="evenodd">
+            <ellipse cx="9.643" cy="17.714" opacity=".2" rx="9" ry="1.286"/>
+            <path d="M1.857 8l1.75-4.085C3.825 3.41 4.446 3 4.997 3h9.008c.55 0 1.175.417 1.388.915L17.142 8h.863c.55 0 .995.438.995 1.003V15h-2v1.501C17 17.33 16.334 18 15.5 18c-.828 0-1.5-.665-1.5-1.499V15H5v1.501C5 17.33 4.334 18 3.5 18c-.828 0-1.5-.665-1.5-1.499V15H0V9.003C0 8.449.45 8 .995 8h.862zM3.5 13a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm12 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-.533-5L13.68 5H5.32L4.033 8h10.934z"/>
+          </g>
+        </svg>
+      </i>
+      <ion-icon color="secondary" item-right [name]="carparkFilter.icon">{{alert.Parking ? alert.Parking + '+' : 'Any' | translate }}</ion-icon>
+      <ion-label> {{ 'Car Parks' | translate }}</ion-label>
+    </ion-item>
+
+    <ion-item  class="toggle-slide car-filter" [ngClass]="{ collapsed: !carparkFilter.showDetails }">
+      <ion-segment [(ngModel)]="cars" color="secondary" class="text-toggle">
+      <ion-segment-button (click)="alert.Parking = 0" value="0">
+        {{ 'Any' | translate }}
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Parking = 1" value="1">
+        1+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Parking = 2" value="2">
+        2+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Parking = 3" value="3">
+        3+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Parking = 4" value="4">
+        4+
+      </ion-segment-button>
+      <ion-segment-button (click)="alert.Parking = 5" value="5">
+          5+
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+
+    <ion-item class="filter-label">
+      <i class="icon icon-location" item-left>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+          <g fill="#F7941F" fill-rule="evenodd" transform="translate(4 1)">
+            <ellipse cx="5.786" cy="16.714" opacity=".2" rx="4.5" ry="1.286"/>
+            <path d="M5.786 16.714S0 8.981 0 5.786a5.786 5.786 0 1 1 11.571 0c0 3.195-5.785 10.928-5.785 10.928zm0-7.714a3.214 3.214 0 1 0 0-6.429 3.214 3.214 0 0 0 0 6.429z"/>
+          </g>
+        </svg>
+      </i>
+      <ion-label>{{ 'Surrounding Suburbs' | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="alert.IncludeSurroundingSuburb"></ion-toggle>
+    </ion-item>
+
+   
+  </ion-list>
+
+</ion-content>
+
+<ion-footer padding >
+    <button ion-button block large (click)="onSave()">
+      <span *ngIf="isEdit">{{'Save changes' | translate}}</span>
+      <span *ngIf="!isEdit">{{'CreateAlertButton' | translate }}</span>
+    </button>
+    <button ion-button block large outline color="danger" (click)="onDelete(alert.Id, alert.AlertName)" *ngIf="isEdit">{{'Delete Alert' | translate}}</button>
+</ion-footer>

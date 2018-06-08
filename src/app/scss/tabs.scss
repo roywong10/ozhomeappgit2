@@ -1,0 +1,42 @@
+.tabs-ios {
+	.icon-alerts {
+		font-size: 24px;
+		margin-top: 2px;
+		height: 25px;
+	}
+
+	.icon-more {
+		font-size: 16px;
+		margin-top: 7px;
+	}
+
+	.tab-badge {
+		font-size: 1rem;
+		padding: 0 1px;
+		min-width: 20px;
+		border: 2px solid $white;
+		right: calc(50% - 23px);
+		top: 3%;
+	}
+}
+
+#tab-t0-4 {
+	display: none;
+}
+
+.tab-button-icon,
+.tab-button {
+	transition: color .1s ease-in;
+}
+
+@media (min-width: $screen-sm) {
+
+
+	.tabbar {
+		justify-content: center;
+
+		.tab-button {
+			max-width: 94px;
+		}
+	}
+}

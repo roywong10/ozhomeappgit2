@@ -1,0 +1,96 @@
+<ion-header>
+
+	<ion-navbar *ngIf="!isTablet">
+		<ion-buttons left start>
+			<button ion-button icon-only (click)="onViewFilters()">
+        		<i class="icon icon-search">
+					<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+						<g fill="#F7F8F9" fill-rule="evenodd">
+							<path d="M10.096 10.303l.707-.707 5.182 4.03c.653.508.711 1.39.122 1.98-.586.586-1.475.53-1.98-.12l-4.03-5.183z" opacity=".6"/>
+							<path d="M6 12A6 6 0 1 1 6 0a6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+						</g>
+					</svg>
+				</i>
+      		</button>
+		</ion-buttons>
+		<ion-title text-center *ngIf="!hasFilters">{{ 'Map View' | translate }}</ion-title>
+		<ion-title text-center class="toolbar-title-long" *ngIf="hasFilters">
+			{{filterSuburbSummary}}<br />
+			<small>{{filterSummary}}</small>
+		</ion-title>
+		<ion-buttons right aria-expanded="">
+			<button ion-button (click)="onToggleListView()">
+       			<i class="icon icon-list">
+					<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11">
+						<g fill="none" fill-rule="evenodd">
+							<path fill="#B7D6EA" d="M0 0h11v6H0z"/>
+							<path fill="#FFF" d="M0 7h11v4H0z"/>
+						</g>
+					</svg>
+				</i> {{ 'List' | translate }}
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+	<ion-navbar *ngIf="isTablet" text-center>
+		<ion-title text-center *ngIf="!hasFilters">{{ 'Map View' | translate }}</ion-title>
+		<ion-title text-center class="toolbar-title-long" *ngIf="hasFilters">
+			{{filterSuburbSummary}}<br />
+			<small>{{filterSummary}}</small>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-grid class="bg-white map-utils">
+		<ion-row align-items-center>
+			<ion-col col-6>
+				<ion-label no-margin [hidden]="isTablet || !propertySearchResults || !propertySearchResults.ReturnValue" [translate]="'ShowingResults'"
+				 [translateParams]="{total: totalProperties}"></ion-label>
+			</ion-col>
+			<ion-col no-margin col-6 text-right  [ngClass]="{'on-modal-shown':showLocationAlert}">
+				<ion-segment [(ngModel)]="mapType" color="secondary" item-right class="text-toggle">
+					<ion-segment-button value="roadmap" (ionSelect)="onSelectRoadMap()">
+						{{ 'Map' | translate }}
+					</ion-segment-button>
+					<ion-segment-button value="satellite" (ionSelect)="onSelectSatellite()">
+						{{ 'Satellite' | translate }}
+					</ion-segment-button>
+				</ion-segment>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid class="default-loc" *ngIf="showLocationAlert">
+		<ion-card>
+			<ion-card-content text-center>
+				{{'DefaultLocMessage' | translate }}<br/>
+				<button ion-button (click)="onViewFilters(true)">{{'SearchAreaButton' | translate}}</button>
+			</ion-card-content>
+		</ion-card>
+	</ion-grid>
+
+	<ion-grid class="bg-white map-utils zoom-message" *ngIf="showZoomMessage">
+		<ion-card>
+			<ion-card-content>
+				<i class="icon icon-zoomin">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						<g fill="#F7941F" fill-rule="evenodd">
+							<path d="M15.412 13.448l7.801 6.067c1.044.812 1.138 2.223.194 3.166-.936.936-2.356.846-3.165-.194L14.24 14.77a8.5 8.5 0 1 1 1.173-1.322zM8.5 15a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z"/>
+							<rect width="1" height="7" x="8" y="5" rx=".5"/>
+							<rect width="1" height="7" x="8" y="5" rx=".5" transform="rotate(90 8.5 8.5)"/>
+						</g>
+					</svg>
+				</i>
+				<span [innerHTML]="'ZoomMessage' | translate"></span>
+				<!--<button ion-button clear (click)="showZoomMessage=false"><ion-icon name="close"></ion-icon></button>-->
+			</ion-card-content>
+		</ion-card>
+	</ion-grid>
+
+	<div #map id="map" class="map" [ngClass]="{'on-modal-shown':showLocationAlert}"></div>
+
+	<property-summary-box [property]="selectedProperty" (click)="onViewProperty(selectedProperty.PropertyID)" class="property-summary-box"
+	 *ngIf="selectedProperty">
+	</property-summary-box>
+</ion-content>

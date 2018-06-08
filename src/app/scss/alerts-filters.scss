@@ -1,0 +1,298 @@
+.toggle-slide {
+	transition: max-height 1s ease, margin .3s ease;
+	max-height: 1000px;
+	overflow: hidden;
+	min-height: 0;
+	border-bottom: 1px solid $grey-border;
+
+	.list-ios {
+		margin: 0 0 0 32px;
+
+		> .item-block {
+			&:first-child,
+			&:last-child {
+				border: 0;
+			}
+		}
+	}
+
+	&.bedroom-filter,
+	&.bathroom-filter,
+	&.car-filter {
+		.label-ios {
+			margin-top: 0;
+		}
+	}
+
+	&.collapsed {
+		max-height: 0;
+		transition: max-height .3s ease, margin .3s ease;
+		margin-top: 0;
+		border-bottom: 1px solid transparent;
+	}
+}
+
+.price-range {
+	margin-top: -10px;
+
+	.range-pin {
+		top: -18px;
+	}
+}
+
+.expanded {
+	&.item-block {
+		.item-inner {
+			border-bottom: 1px solid transparent;
+			transition: none;
+		}
+	}
+}
+
+.filter-label {
+	.item-inner {
+		transition: border .3s ease .3s;
+	}
+
+	.label-ios {
+		margin: 15px 8px 15px 0;
+		font-size: 1.6rem;
+	}
+
+	ion-segment[item-right] {
+		margin-right: 0;
+	}
+
+	.show-me-filter {
+		max-width: 200px;
+	}
+
+	.toggle-ios {
+		padding-right: 0;
+	}
+}
+
+.alert-name {
+	&.item-input ion-label {
+		width: 100px;
+	}
+
+	.input-ios {
+		border: 1px solid $grey-border;
+
+		.text-input-ios {
+			margin: 8px;
+		}
+	}
+}
+
+page-property-filters,
+page-alerts-edit {
+	.content {
+		background: $white;
+	}
+
+	.item-ios {
+		padding-left: 12px;
+
+		.icon {
+			margin-right: 12px;
+		}
+
+		&.toggle-slide>.item-inner {
+			padding-right: 0;
+			border: 0;
+		}
+	}
+
+	rl-tag-input {
+		//Check with Jen - TODO Tech does it break something?
+		form {
+			visibility: hidden;
+			height: 0;
+			width: 0;
+			display: block !important;
+		}
+
+		.tag-lst {
+			padding: 0 !important;
+		}
+	}
+
+	[_nghost-c0] {
+		box-shadow: none;
+	}
+
+	ion-buttons {
+		align-self: flex-start;
+		margin-top: 5px;
+	}
+
+	.item-inner {
+		.icon {
+			font-size: 1.4rem;
+			padding-right: 18px;
+			font-family: $font-family-base;
+			line-height: 28px;
+			font-weight: bold;
+
+			&::before {
+				position: absolute;
+				right: 10px;
+				top: 12px;
+				font-family: 'Ionicons';
+				font-size: 1.8rem;
+				color: #c0c0c0;
+				font-weight: normal;
+			}
+		}
+
+		.label-ios {
+			color: $text-color;
+			font-size: 1.6rem;
+		}
+
+	}
+
+	.expanded {
+		.item-inner {
+			.icon {
+				&::before {
+					color: map-get($colors, secondary);
+				}
+			}
+		}
+	}
+}
+
+.searchbar-ios {
+	&.searchbar-left-aligned {
+		.searchbar-input {
+			padding: 4px 10px;
+			border-radius: 2px;
+			background: #0a5587; //used once
+			height: 28px;
+		}
+	}
+
+	.searchbar-search-icon {
+		display: none;
+	}
+}
+
+.suburb-list {
+	padding-bottom: 20px;
+	background: $grey-bg;
+	margin-bottom: 0;
+
+	.item-checkbox {
+		padding-left: 0;
+
+		.item-inner {
+			padding-left: 10px;
+			padding-right: 0;
+		}
+	}
+
+	.checkbox-ios {
+		.checkbox-icon {
+			border-radius: 50%;
+			background: map-get($colors, primary);
+			border: 0;
+			position: relative;
+
+			&::before,
+			&::after {
+				content: '';
+				width: 2px;
+				height: 12px;
+				background: $white;
+				border-radius: 1px;
+				position: absolute;
+				left: 10px;
+				top: 5px;
+				transition: all .2s ease;
+				will-change: transform;
+			}
+
+			&::after {
+				transform: rotate(90deg);
+			}
+
+			&.checkbox-checked {
+				background: $green;
+
+				&::before {
+					transform: rotate(37deg);
+					left: 12px;
+					height: 12px;
+				}
+
+				&::after {
+					transform: rotate(140deg);
+					height: 6px;
+					top: 10px;
+					left: 7px;
+				}
+
+				.checkbox-inner {
+					display: none;
+				}
+			}
+
+		}
+	}
+}
+
+page-property-filters .tag-list,
+page-alerts-edit .tag-list {
+	padding: 5px 10px 10px;
+	background: $grey-bg;
+
+	rl-tag-input-item[_nghost-c1] {
+		background: map-get($colors, secondary);
+		color: $white;
+		font-size: 1.2rem;
+		height: 24px;
+		line-height: 24px;
+		padding: 0 5px;
+		margin-right: 5px;
+		margin-top: 5px;
+		border-radius: 2px;
+		font-family: $font-family-base;
+
+		.ng2-tag-input-remove {
+			background: transparent;
+			color: rgba($white, .5);
+			height: 24px;
+			line-height: 24px;
+			position: relative;
+			top: 1px;
+			width: 26px;
+			margin-left: 0;
+		}
+
+	}
+
+}
+
+.btn-use-location {
+	background: $white;
+	color: $text-color;
+	text-align: left;
+	margin: 0;
+	padding: 0 10px;
+	border-top: 1px solid $grey-border;
+	box-shadow: 0 1px 0 0 $grey-border;
+	transition: background .3s ease;
+
+	&.activated {
+		background: lighten($light-blue, 10%);
+		box-shadow: 0 1px 0 0 $light-blue;
+	}
+
+	.button-inner {
+		justify-content: space-between;
+	}
+}
+

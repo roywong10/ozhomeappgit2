@@ -1,0 +1,8 @@
+{
+  "name": "OzHome",
+  "app_id": "a00c50b2",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

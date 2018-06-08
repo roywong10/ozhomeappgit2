@@ -1,0 +1,144 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+	primary:    #f7941f,
+	secondary:  #0f76bb,
+	danger:     #f53d3d,
+	light:      #f4f4f4,
+	dark:       #222
+);
+
+
+
+// Custom Variables
+// --------------------------------------------------
+
+$black: #000;
+$white: #fff;
+$off-black: #333;
+$grey: #666;
+$green: #7fbb0f;
+$fb-blue: #3b5998;
+$red: #df1644;
+$error-red: #f71f1f;
+
+$grey-bg: #eee;
+$light-blue: #b7d6ea;
+$grey-border: #d9d9d9;
+$grey-border-2: #dedede;
+$text-color: #444;
+$text-color-two: #555;
+$warm-grey: #999;
+
+$screen-sm: 768px;
+$screen-portrait: 1024px;
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+//@import "roboto";
+//@import "noto-sans";
+$font-family-base: 'Nunito Sans', sans-serif;
+
+//Tabs
+$tabs-background: $white;
+$tabs-border-color: transparent;
+$tabs-ios-border: 0;
+$tabs-ios-tab-font-size: 12px;
+$tabs-ios-tab-icon-size: 20px;
+$tabs-ios-tab-icon-color: #c6c6c6;
+$tabs-tab-color-inactive: $text-color;
+
+//Navbar
+$toolbar-background: map-get($colors, secondary);
+$toolbar-ios-button-font-size: 1.4rem;
+$toolbar-ios-title-font-weight: normal;
+$toolbar-ios-title-font-size: 1.6rem;
+
+
+//Cards
+$card-ios-margin-left: 0;
+$card-ios-margin-right: 0;
+$card-ios-border-radius: 0;
+$card-ios-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+$card-ios-margin-bottom: 15px;
+$card-ios-header-padding: 20px;
+
+//List
+$list-border-color: $grey-border-2;
+
+//Form elements
+$button-ios-border-radius: 0;
+$text-input-placeholder-color: #ccc;
+
+//Searhbar
+$searchbar-ios-input-placeholder-color: rgba(255, 255, 255, .5);
+$searchbar-ios-input-text-color: #fff;
+$searchbar-ios-input-clear-icon-color: rgba(255, 255, 255, .5);
+
+//Loader
+$loading-ios-spinner-color: map-get($colors, primary);
+$loading-ios-background: $white;
+$loading-ios-border-radius: 2px;
+
+$modal-inset-width: 415px;
+
+
+
+

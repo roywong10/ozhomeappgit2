@@ -1,0 +1,35 @@
+page-request-location-access {
+	ion-grid,
+	ion-row {
+		height: 100%;
+	}
+
+	.button-row {
+		height: 70px;
+	}
+
+	ion-img {
+		margin-bottom: 20px;
+	}
+
+	p {
+		color: $white;
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+
+	.note {
+		color: $white;
+		font-size: 1.6rem;
+		font-weight: normal;
+		margin: 0;
+	}
+}
+
+@media (max-width: 360px) {
+	page-request-location-access {
+		br {
+			display: none;
+		}
+	}
+}
