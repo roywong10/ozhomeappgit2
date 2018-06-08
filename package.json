@@ -30,7 +30,7 @@
     "@angular/platform-browser-dynamic": "4.0.2",
     "@ionic-native/calendar": "^3.7.0",
     "@ionic-native/core": "^3.6.1",
-    "@ionic-native/diagnostic": "^3.10.3",
+    "@ionic-native/diagnostic": "^3.14.0",
     "@ionic-native/email-composer": "^3.7.0",
     "@ionic-native/geolocation": "^3.12.1",
     "@ionic-native/google-maps": "^3.6.1",

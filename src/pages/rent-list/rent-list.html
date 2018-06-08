@@ -1,0 +1,126 @@
+<ion-header>
+	<ion-navbar hideBackButton *ngIf="!isTablet">
+		<ion-buttons left start>
+			<button ion-button icon-only (click)="onViewFilters()">
+				<i class="icon icon-search">
+					<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+						<g fill="#F7F8F9" fill-rule="evenodd">
+							<path d="M10.096 10.303l.707-.707 5.182 4.03c.653.508.711 1.39.122 1.98-.586.586-1.475.53-1.98-.12l-4.03-5.183z" opacity=".6"/>
+							<path d="M6 12A6 6 0 1 1 6 0a6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+						</g>
+					</svg>
+				</i>
+			</button>
+		</ion-buttons>
+		<ion-title text-center *ngIf="!hasFilters"  (click)="onViewFilters()">{{ 'Rent' | translate }}</ion-title>
+		<ion-title text-center class="toolbar-title-long" *ngIf="hasFilters" (click)="onViewFilters()">
+			{{filterSuburbSummary}}<br />
+			<small>{{filterSummary}}</small>
+		</ion-title>
+		<ion-buttons right aria-expanded="">
+			<button no-padding ion-button (click)="onToggleMapView()">
+				<i class="icon icon-map">
+					<svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12">
+						<g xmlns="http://www.w3.org/2000/svg" id="icon/map" fill="#FFFFFF" fill-rule="evernode">
+							<path d="M5.5,12 C2.5,8.65685425 1,6.15685425 1,4.5 C1,2.01471863 3.01471863,0 5.5,0 C7.98528137,0 10,2.01471863 10,4.5 C10,6.15685425 8.5,8.65685425 5.5,12 Z M5.5,7 C6.88071187,7 8,5.88071187 8,4.5 C8,3.11928813 6.88071187,2 5.5,2 C4.11928813,2 3,3.11928813 3,4.5 C3,5.88071187 4.11928813,7 5.5,7 Z"/>
+						</g>
+					</svg>
+				</i> {{ 'Map' | translate }}
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+
+	<ion-navbar hideBackButton class="filter-nav" *ngIf="isTablet">
+		<ion-buttons left start>
+			<button ion-button icon-only (click)="onViewFilters()">
+				<i class="icon icon-search">
+					<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+						<g fill="#F7F8F9" fill-rule="evenodd">
+							<path d="M10.096 10.303l.707-.707 5.182 4.03c.653.508.711 1.39.122 1.98-.586.586-1.475.53-1.98-.12l-4.03-5.183z" opacity=".6"/>
+							<path d="M6 12A6 6 0 1 1 6 0a6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+						</g>
+					</svg>
+				</i>
+			</button>
+		</ion-buttons>
+
+		<ion-searchbar
+			(tap) = "onViewFilters(true)"
+			autocorrect="off"
+			placeholder="{{ 'SuburbPlaceholder' | translate }}">
+		</ion-searchbar>
+
+		<ion-buttons right end *ngIf="showSuburbList || showPreviousSearchList">
+			<button ion-button clear (click)="cancelGetSuburbItems($event)">
+				{{ 'Done' | translate }}
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content has-bouncing>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-10>
+				<p no-margin [hidden]="!propertySearchResults || !propertySearchResults.ReturnValue.Items || !propertySearchResults.ReturnValue.Items.length"
+					[translate]="'ShowingOfResults'" [translateParams]="{num: numPropertiesLoad, total:propertySearchResults.ReturnValue.TotalItems}"></p>
+			</ion-col>
+			<ion-col no-margin col-2 text-right>
+				<button class="btn-sort" *ngIf="!isTablet" ion-button clear (click)="onViewSort()">
+					<i class="icon icon-sort">
+						<svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8">
+							<g fill="none" fill-rule="evenodd">
+								<rect width="11" height="2" fill="#0F76BB" rx="1"/>
+								<rect width="3" height="2" y="6" fill="#87BADD" rx="1"/>
+								<rect width="7" height="2" y="3" fill="#87BADD" rx="1"/>
+							</g>
+						</svg>
+					</i>
+					{{ 'Sort' | translate }}
+				</button>
+
+				<ion-label class="btn-sort" *ngIf="isTablet" ion-button clear >
+					<i class="icon icon-sort">
+						<svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8">
+							<g fill="none" fill-rule="evenodd">
+								<rect width="11" height="2" fill="#0F76BB" rx="1"/>
+								<rect width="3" height="2" y="6" fill="#87BADD" rx="1"/>
+								<rect width="7" height="2" y="3" fill="#87BADD" rx="1"/>
+							</g>
+						</svg>
+					</i>
+					{{ 'Sort' | translate }}
+				</ion-label>
+				<ion-select class="sort-select" [ngModel]="sortFilter" *ngIf="isTablet" interface="popover" #sortOrderTab placeholder="" (ngModelChange)="onSortSelected(sortOrderTab.value)">
+					<ion-option value="Latest">{{ 'Latest listing' | translate }}</ion-option>
+					<ion-option value="PriceAsc">{{ 'PriceLowHigh' | translate }}</ion-option>
+					<ion-option value="PriceDesc">{{ 'PriceHighLow' | translate }}</ion-option>
+					<ion-option value="SuburbAsc">{{ 'SuburbAZ' | translate }}</ion-option>
+					<ion-option value="SuburbDesc">{{ 'SuburbZA' | translate }}</ion-option>
+					<ion-option value="Auction">{{ 'Upcoming auctions' | translate }}</ion-option>
+				</ion-select>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<property-list-component [hidden]="!propertySearchResults || !propertySearchResults.ReturnValue.Items || !propertySearchResults.ReturnValue.Items.length"
+	 *ngFor="let property of propertySearchResults.ReturnValue.Items" [showInspectionLabel]="false" tappable (click)="onViewProperty(property.PropertyID)"
+	 [property]='property'></property-list-component>
+
+	<ion-grid *ngIf="!isLoading && propertySearchResults.ReturnValue.Items.length == 0" text-center class="empty-search">
+		<ion-row align-items-center>
+			<ion-col align-items-center>
+				<img src="assets/svg/emptysearch.svg" alt="Empty search" />
+				<p class="empty-search-text" [innerHTML]="'NoPropertiesMessage' | translate"></p>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+
+	<ion-infinite-scroll (ionInfinite)="loadMoreProperties($event)" #infiniteScroll>
+		<ion-infinite-scroll-content loadingSpinner="crescent">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+</ion-content>

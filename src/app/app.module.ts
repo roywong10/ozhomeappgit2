@@ -44,6 +44,7 @@ import { PropertySortPage } from './../pages/property-sort/property-sort';
 import { PropertyFiltersPage } from './../pages/property-filters/property-filters';
 import { PropertyMapPage } from './../pages/property-map/property-map';
 import { PropertyListPage } from './../pages/property-list/property-list';
+import { RentalListPage } from './../pages/rent-list/rent-list';
 import { MyAccountPage } from './../pages/my-account/my-account';
 import { AlertsPage } from './../pages/alerts/alerts';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -114,6 +115,7 @@ export function customHttpFactory (backend: XHRBackend, defaultOptions: RequestO
     AlertsPage,
     MyAccountPage,
     PropertyListPage,
+    RentalListPage,
     PropertyMapPage,
     PropertyFiltersPage,
     PropertySortPage,
@@ -169,6 +171,7 @@ export function customHttpFactory (backend: XHRBackend, defaultOptions: RequestO
     AlertsPage,
     MyAccountPage,
     PropertyListPage,
+    RentalListPage,
     PropertyMapPage,
     ShortlistMapPage,
     PropertyFiltersPage,

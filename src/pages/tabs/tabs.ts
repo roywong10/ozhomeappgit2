@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Tabs } from "ionic-angular";
 import { IProperty } from "../../models/property";
 import { PropertyListPage } from "../property-list/property-list";
+import { RentalListPage } from "../rent-list/rent-list";
 import { ShortlistPage } from "../shortlist/shortlist";
 import { MyAccountPage } from "../my-account/my-account";
 import { AlertsPage } from "../alerts/alerts";
@@ -28,6 +29,7 @@ export class TabsPage implements OnInit {
   tab2Root: any = ShortlistPage;
   tab3Root = AlertsPage;
   tab4Root: any = MyAccountPage;
+  tab5Root: any = RentalListPage;
   currShortlistSub: Subscription;
 
   constructor(private shortlistService: ShortlistService,
