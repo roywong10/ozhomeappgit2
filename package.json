@@ -70,7 +70,7 @@
     "git": "^0.1.5",
     "ionic-angular": "3.1.1",
     "ionic-plugin-keyboard": "^2.2.1",
-    "ionic2-custom-icons": "^0.4.1",
+    "ionic2-custom-icons": "^0.6.0",
     "ionicons": "3.0.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
